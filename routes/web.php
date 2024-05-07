@@ -2,6 +2,7 @@
 
 use App\Models\Recipe;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Auth\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,3 +21,5 @@ Route::get('/', function () {
         'recipes' => $recipes
     ]);
 })->name('home.index');
+
+Route::get('/register', [RegisterController::class, 'create'])->name('auth.register');
