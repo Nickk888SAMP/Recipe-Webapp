@@ -12,6 +12,7 @@ class InputField extends Component
     public string $value;
     public string $placeholder;
     public string $type;
+    public string $icon;
 
     /**
      * Create a new component instance.
@@ -20,13 +21,15 @@ class InputField extends Component
         string $name = '',
         string $value = '',
         string $placeholder = '',
-        string $type = 'text'
+        string $type = 'text',
+        string $icon = ''
     )
     {
         $this->name =  $name;
         $this->value =  $value;
         $this->placeholder = $placeholder;
         $this->type = $type;
+        $this->icon = $icon;
     }
 
     /**

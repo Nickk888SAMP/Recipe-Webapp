@@ -4,6 +4,10 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Ingredient;
+use App\Models\RecipeImage;
+use App\Models\Review;
 
 class Recipe extends Model
 {
@@ -20,4 +24,21 @@ class Recipe extends Model
         }
         return $hours >= 1 ? $hours . " Stunde(n) " . $minutes . " Minute(n)" : $minutes . " Minute(n)";
     }
+
+    public function ingredients(): HasMany
+    {
+        return $this->hasMany(Ingredient::class);
+    }
+
+    public function images(): HasMany
+    {
+        return $this->hasMany(RecipeImage::class);
+    }
+
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
+
+
 }

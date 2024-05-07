@@ -3,6 +3,8 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+
+use App\Models\Ingredient;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Recipe;
@@ -18,12 +20,21 @@ class DatabaseSeeder extends Seeder
             'name' => 'Nickk888',
             'email' => 'kevinnickk888@gmail.com'
         ]);
-        User::factory(15)->create();
+        User::factory(25)->create();
         Recipe::factory(100)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $recipes = Recipe::all();
+        foreach($recipes as $recipe)
+        {
+            for($i = 0; $i < rand(3, 15); $i++)
+            {
+                Ingredient::factory()->create([
+                    'recipe_id' => $recipe->id,
+                    'amount' => rand(1, 1000),
+                    'unit' => fake()->randomElement(["g", "EL", "TL", "ml", "Kg", "El, gestr.", "Paket"]),
+                    'ingredient' => fake()->word(),
+                ]);
+            }
+        }
     }
 }

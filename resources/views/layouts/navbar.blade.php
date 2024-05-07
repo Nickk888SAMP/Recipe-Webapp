@@ -1,6 +1,6 @@
 <header x-data="{ mobileCategoriesOpen: false }" class="w-full shadow-lg bg-white sticky z-50 top-0">
     <nav class="md:container mx-auto p-4 w-full">
-        <div class="flex justify-between items-center">
+        <div class="flex justify-evenly items-center">
 
             {{-- Logo --}}
             <div>
@@ -34,16 +34,40 @@
             </div>
 
             {{-- Login Button --}}
-            <div class="hidden md:flex space-x-6">
-                <a class="font-semibold text-orange-500 text-lg hover:text-orange-300 transition" href="#">Anmelden</a>
-            </div>
+            @if (!auth()->check())
+                <div class="hidden md:flex space-x-6">
+                    <a class="font-semibold text-orange-500 text-lg hover:text-orange-300 transition" href="{{ route('auth.login.index') }}">Anmelden</a>
+                </div>
+            @endif
+            
+            {{-- Logged In --}}
+            @if (auth()->check())
+                <div x-data="{ show: false }" class="hidden md:flex items-center gap-2">
 
-            {{-- Logged In Avatar --}}
-            {{-- <div class="hidden md:flex">
-                <button>
-                    <img class="w-10 rounded-full" src="{{ asset('img/avatar-3.jpeg') }}" alt="avatar">
-                </button>
-            </div> --}}
+                    {{-- Avatar --}}
+                    <button x-on:click="show = !show" class="hover:scale-110 transition">
+                        <div class="flex flex-col justify-center items-center">
+                            <img class="w-10 rounded-full" src="{{ asset('img/avatar-3.jpeg') }}" alt="avatar">
+                        </div>
+                    </button>
+                    
+                    {{-- Menu --}}
+                    <div x-show="show" class="absolute top-0 translate-y-[25%] -translate-x-[40%]" x-on:click.outside="show = false">
+                        <div class="relative bg-white p-4 shadow-lg font-medium text-lg flex flex-col gap-4 w-52 items-center">
+                            <p class="text-sm font-semibold text-slate-800">Hallo, {{ $user->name }}</p>
+                            <a class="hover:text-orange-300 text-slate-500  transition" href="#">Mein Profil</a>
+                            <a class="hover:text-orange-300 text-slate-500  transition" href="#">Meine Rezepte</a>
+                            <a class="hover:text-orange-300 text-slate-500  transition" href="#">Meine Rezensionen</a>
+                            <a class="hover:text-orange-300 text-slate-500  transition" href="#">Meine Nachrichten</a>
+                            <a class="hover:text-orange-300 text-slate-500  transition" href="#">Meine Favoriten</a>
+                            <form action="{{ route('auth.logout') }}" method="POST">
+                                @csrf
+                                <button class="hover:text-orange-300 text-orange-500 transition">Abmelden</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            @endif
         </div>
 
         {{-- Categories --}}
@@ -65,8 +89,11 @@
         <div class="flex flex-col text-center space-y-1 p-4 font-medium text-lg text-slate-600 divide-y">
             
             {{-- Login Button --}}
-            <a class="font-semibold text-orange-500 text-lg p-4 transition" href="#">Anmelden</a>
-            
+            @if (!auth()->check())
+                <a class="font-semibold text-orange-500 text-lg p-4 transition" href="{{ route('auth.login.index') }}">Anmelden</a>
+            @else
+
+            @endif
             <a class="hover:text-orange-500 transition p-4" href="#">Alle Rezepte</a>
             <a class="hover:text-orange-500 transition p-4" href="#">Kochen</a>
             <a class="hover:text-orange-500 transition p-4" href="#">Backen</a>

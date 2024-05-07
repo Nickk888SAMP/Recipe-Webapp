@@ -1,3 +1,7 @@
+@php
+    $user = Auth::user();
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,4 +38,15 @@
         @include('layouts.scripts')
 
     </body>
+
+    {{-- Error handling --}}
+    @if($errors->any())
+        @foreach ($errors->all() as $error)
+            @php
+                toastr()->error($error);
+            @endphp
+        @endforeach
+    @endif
+
+    
 </html>
