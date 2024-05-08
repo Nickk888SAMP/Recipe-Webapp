@@ -1,4 +1,4 @@
-<div>
+<div class="bg-slate-50 rounded-t-3xl rounded-b-md">
     {{-- Image --}}
     <div class="h-40 rounded-md md:rounded-t-3xl overflow-hidden flex items-center max-w-96 md:h-60">
         <img :class="hover ? 'scale-110' : ''" class="object-cover w-full h-full transition duration-500" src="{{ asset('img/stockfood-4.jpg') }}" alt="food">

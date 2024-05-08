@@ -1,6 +1,6 @@
 <header x-data="{ mobileCategoriesOpen: false }" class="w-full shadow-lg bg-white sticky z-50 top-0">
     <nav class="md:container mx-auto p-4 w-full">
-        <div class="flex justify-evenly items-center">
+        <div class="flex justify-between md:justify-evenly items-center">
 
             {{-- Logo --}}
             <div>
