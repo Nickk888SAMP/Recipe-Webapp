@@ -25,8 +25,7 @@ class LoginController extends Controller
 
         if(Auth::attempt($credentials))
         {
-            toastr()->success('Angemeldet');
-            return redirect()->route('home.index');
+            return redirect()->back();
         }
 
         toastr()->error('Falsche anmeldedaten. Bitte versuchen Sie es erneut.');

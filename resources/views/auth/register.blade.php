@@ -13,19 +13,19 @@
                 {{-- Email --}}
                 <div class="mb-4">
                     {{-- <x-input-field-label text="Email" for="email"/> --}}
-                    <x-input-field name="email" type="email" class="rounded-md" placeholder="Email" value="{{ old('email') }}"/>
+                    <x-input-field name="email" type="email" class="rounded-md w-full" placeholder="Email" value="{{ old('email') }}"/>
                 </div>
                 
                 {{-- Password --}}
                 <div class="mb-4">
                     {{-- <x-input-field-label text="Passwort" for="password"/> --}}
-                    <x-input-field name="password" type="password" class="rounded-md" placeholder="Passwort"/>
+                    <x-input-field name="password" type="password" class="rounded-md w-full" placeholder="Passwort"/>
                 </div>
                 
                 {{-- Display Name --}}
                 <div class="mb-4">
                     {{-- <x-input-field-label text="Anzeigename" for="displayname"/> --}}
-                    <x-input-field name="display_name" class="rounded-md" placeholder="Anzeigename"  value="{{ old('display_name') }}"/>
+                    <x-input-field name="display_name" class="rounded-md w-full" placeholder="Anzeigename"  value="{{ old('display_name') }}"/>
                 </div>
 
                 {{-- Button --}}

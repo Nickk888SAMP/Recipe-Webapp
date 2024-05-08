@@ -12,11 +12,11 @@
         <title>Das Kochbuch - 350.000 Rezepte zum Nachkochen.</title>
 
         {{-- Scripts --}}
-        <script src="//unpkg.com/alpinejs" defer></script>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
         {{-- Style --}}
         @vite('resources/css/app.css')
+        @livewireStyles 
 
     </head>
 
@@ -36,7 +36,7 @@
         
         {{-- Scripts --}}
         @include('layouts.scripts')
-
+        @livewireScripts
     </body>
 
     {{-- Error handling --}}

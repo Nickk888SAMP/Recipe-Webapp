@@ -47,5 +47,10 @@ class Recipe extends Model
         return $this->hasMany(Review::class);
     }
 
+    public function avgReviewRating()
+    {
+        return number_format($this->reviews()->avg('rating'), 1);
+    }
+
 
 }

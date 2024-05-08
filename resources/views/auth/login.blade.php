@@ -13,13 +13,13 @@
             {{-- Email --}}
             <div class="mb-4">
                 {{-- <x-input-field-label text="Email" for="email"/> --}}
-                <x-input-field name="email" type="email" class="rounded-md" placeholder="Email" value="{{ old('email') }}"/>
+                <x-input-field name="email" type="email" class="rounded-md w-full" placeholder="Email" value="{{ old('email') }}"/>
             </div>
             
             {{-- Password --}}
             <div class="mb-4">
                 {{-- <x-input-field-label text="Passwort" for="password"/> --}}
-                <x-input-field class="w-full" name="password" type="password" class="rounded-md" placeholder="Passwort"/>
+                <x-input-field class="w-full" name="password" type="password" class="rounded-md w-full" placeholder="Passwort"/>
             </div>
 
             {{-- Button --}}
