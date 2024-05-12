@@ -1,5 +1,5 @@
 <section id="footer">
-    <div class="bg-orange-500 text-white">
+    <div class="bg-primary text-white">
         <div class="p-4 mx-auto mt-4 md:w-[90%] lg:w-[80%] xl:w-[70%]">
 
             {{-- Social Links --}}
@@ -64,7 +64,7 @@
 
             {{-- Copyright --}}
             <div class="py-8 flex justify-center text-lg">
-                <p>&copy 2024 Designed by Kevin Duda</p>
+                <p class="text-sm">&copy 2024 Designed by Kevin Duda</p>
             </div>
         </div>
     </div>

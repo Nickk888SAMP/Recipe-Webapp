@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         User::factory()->create([
-            'name' => 'Nickk888',
+            'displayname' => 'Nickk888',
             'email' => 'kevinnickk888@gmail.com'
         ]);
         User::factory(25)->create();
@@ -30,7 +30,7 @@ class DatabaseSeeder extends Seeder
             {
                 Ingredient::factory()->create([
                     'recipe_id' => $recipe->id,
-                    'amount' => rand(1, 1000),
+                    'amount' => rand(1, 1000) / $recipe->servings,
                     'unit' => fake()->randomElement(["g", "EL", "TL", "ml", "Kg", "El, gestr.", "Paket"]),
                     'ingredient' => fake()->word(),
                 ]);

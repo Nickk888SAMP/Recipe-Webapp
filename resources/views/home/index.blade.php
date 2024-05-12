@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@php
+    $user = Auth::user();
+@endphp
+
 @section('content')
     @include('home.hero')
     @include('home.categories')

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\LogoutRequest;
 use Illuminate\Support\Facades\Auth;
@@ -28,7 +27,7 @@ class LoginController extends Controller
             return redirect()->back();
         }
 
-        toastr()->error('Falsche anmeldedaten. Bitte versuchen Sie es erneut.');
+        $this->error('Falsche anmeldedaten. Bitte versuchen Sie es erneut.');
         return redirect()->back();
     }
 

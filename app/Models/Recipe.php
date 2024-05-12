@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use Livewire\WithoutUrlPagination;
+use Livewire\WithPagination;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -13,7 +15,7 @@ use App\Models\User;
 
 class Recipe extends Model
 {
-    use HasFactory;
+    use HasFactory, WithPagination, WithoutUrlPagination;
 
     public function getPrepTime(bool $shorter = false)
     {
@@ -44,7 +46,7 @@ class Recipe extends Model
 
     public function reviews(): HasMany
     {
-        return $this->hasMany(Review::class);
+        return $this->hasMany(Review::class)->orderByDesc("created_at");
     }
 
     public function avgReviewRating()

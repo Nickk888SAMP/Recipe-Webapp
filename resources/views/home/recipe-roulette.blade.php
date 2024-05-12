@@ -19,7 +19,7 @@
                     
                     {{-- Text --}}
                     <div class="absolute h-full w-full flex items-center z-10 justify-center p-4 ">
-                        <p :class="Hover ? 'text-orange-500' : 'text-slate-100'" class="font-bold text-3xl transition">Was koche ich heute?</p>
+                        <p :class="Hover ? 'text-primary' : 'text-slate-100'" class="font-bold text-3xl transition">Was koche ich heute?</p>
                     </div>
                 </div>
 
@@ -32,16 +32,16 @@
         <div class="hidden md:flex flex-col justify-evenly px-4 text-slate-700 font-medium text-2xl">
             
             {{-- Top Section --}}
-            <div class="bg-orange-100 rounded-r-3xl rounded-b-3xl mb-2 p-4 flex items-center grow">
-                <svg class="w-24 text-orange-500"  xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M5 12l6 6" /><path d="M5 12l6 -6" /></svg>
+            <div class="bg-tritary rounded-r-3xl rounded-b-3xl mb-2 p-4 flex items-center grow">
+                <svg class="w-24 text-primary"  xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-left"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M5 12l6 6" /><path d="M5 12l6 -6" /></svg>
                 <p class="">Was koche ich heute?</p>
             </div>
             
 
             {{-- Bottom Section --}}
-            <div class="bg-orange-100 rounded-r-3xl rounded-b-3xl mt-2 p-4 flex items-center grow">
+            <div class="bg-tritary rounded-r-3xl rounded-b-3xl mt-2 p-4 flex items-center grow">
                 <p class="text-right">Was backe ich heute?</p>
-                <svg class="w-24 text-orange-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M13 18l6 -6" /><path d="M13 6l6 6" /></svg>
+                <svg class="w-24 text-primary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-arrow-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 12l14 0" /><path d="M13 18l6 -6" /><path d="M13 6l6 6" /></svg>
             </div>
             
         </div>
@@ -58,7 +58,7 @@
                     
                     {{-- Text --}}
                     <div class="absolute h-full w-full flex items-center z-10 justify-center p-4 ">
-                        <p :class="Hover ? 'text-orange-500' : 'text-slate-100'" class="font-bold text-3xl transition">Was backe ich heute?</p>
+                        <p :class="Hover ? 'text-primary' : 'text-slate-100'" class="font-bold text-3xl transition">Was backe ich heute?</p>
                     </div>
                 </div>
 

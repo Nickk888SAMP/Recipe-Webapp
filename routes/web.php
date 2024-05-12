@@ -6,25 +6,22 @@ use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\RecipeController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\ProfileController;
+use App\Http\Controllers\UserRecipeController;
+use App\Http\Controllers\UserReviewController;
+use App\Http\Controllers\UserMessageController;
+use App\Http\Controllers\UserFavoriteController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-Route::get('/', function () {
+// Home
+Route::get('/', function () 
+{
     $recipes = Recipe::all();
     return view('Home.index', [
         'recipes' => $recipes
     ]);
 })->name('home.index');
 
+// Auth
 Route::get('/login', [LoginController::class, 'index'])->name('auth.login.index');
 Route::post('/login', [LoginController::class, 'login'])->name('auth.login.login');
 
@@ -33,6 +30,38 @@ Route::post('/register', [RegisterController::class, 'register'])->name('auth.re
 
 Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
 
-Route::resource("recipe", RecipeController::class);
+// Show Recipe
+Route::resource("recipe", RecipeController::class)->only('show');
 
-Route::resource("user", UserController::class);
+// Show User
+Route::resource("user", UserController::class)->only('show');
+
+// Dashboard
+Route::controller(ProfileController::class)->prefix('dashboard')->middleware('auth')->group(function () {
+    Route::get('/profile', 'edit')->name('dashboard.edit');
+    Route::put('/update-profile', 'updateProfile')->name('dashboard.update.profile');
+    Route::put('/update-profile-password', 'updatePassword')->name('dashboard.update.password');
+});
+
+Route::controller(UserRecipeController::class)->prefix('dashboard')->middleware('auth')->group(function () {
+    Route::get('/recipees', 'index')->name('dashboard.recipees');
+    Route::get('/recipees/create', 'create')->name('dashboard.recipees.create');
+    Route::post('/recipees/create', 'recipeAdd')->name('dashboard.recipees.create.add');
+});
+
+Route::controller(UserReviewController::class)->prefix('dashboard')->middleware('auth')->group(function () {
+    Route::get('/reviews', 'index')->name('dashboard.reviews');
+});
+
+Route::controller(UserMessageController::class)->prefix('dashboard')->middleware('auth')->group(function () {
+    Route::get('/messages', 'index')->name('dashboard.messages');
+});
+
+Route::controller(UserFavoriteController::class)->prefix('dashboard')->middleware('auth')->group(function () {
+    Route::get('/favorites', 'index')->name('dashboard.favorites');
+});
+
+// Fallback
+Route::fallback(function () {
+    return view('404');
+});

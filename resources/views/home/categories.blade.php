@@ -17,7 +17,7 @@
                 <img :class="hover ? 'scale-110' : ''" class="object-cover w-full h-full transition duration-500" src="{{ asset('img/stockfood-4.jpg') }}" alt="slide-image">
                
                 {{-- Text --}}
-                <p :class="hover ? 'text-orange-500' : 'text-slate-100'"  class="absolute text-2xl text-center font-semibold z-10 ">{{ $category }}</p>
+                <p :class="hover ? 'text-primary' : 'text-slate-100'"  class="absolute text-2xl text-center font-semibold z-10 ">{{ $category }}</p>
             </div> 
         </a>
         

@@ -21,7 +21,7 @@
                         </p>
 
                         <div class="pt-8 pb-4 font-semibold text-white text-center">
-                            <a class="border py-2 px-4 rounded-full bg-orange-500" href="#">Zu den Rezepten</a>
+                            <a class="border py-2 px-4 rounded-full bg-primary" href="#">Zu den Rezepten</a>
                         </div>
                     </div>
 
@@ -35,8 +35,8 @@
         <div class="swiper-pagination swiper-pagination1"></div>
     
         <!-- If we need navigation buttons -->
-        <div class="swiper-button-prev swiper-button-prev1 text-orange-500"></div>
-        <div class="swiper-button-next swiper-button-next1 text-orange-500"></div>
+        <div class="swiper-button-prev swiper-button-prev1 text-primary"></div>
+        <div class="swiper-button-next swiper-button-next1 text-primary"></div>
     </div>
     
 </section>

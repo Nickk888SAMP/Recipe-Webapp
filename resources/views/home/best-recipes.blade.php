@@ -5,26 +5,32 @@
 
     {{-- Slides --}}
     <div class="mt-4">
-        <div class="swiper swiper2 rounded-md md:rounded-3xl">
-            <div class="swiper-wrapper">
-
-                @foreach ($recipes as $recipe)
-                <div class="swiper-slide">
-                    <div x-data="{ hover: false }" x-on:mouseover="hover = true" x-on:mouseout="hover = false">
+        @if (count($recipes) == 0)
+        
+        <x-noitemsinfo>
+            Entschuldigung, aber es gibt noch keine Rezepte.<br>Bleib dran, bald werden welche verfügbar sein!
+        </x-noitemsinfo>
+        
+        @else
+            <div class="swiper swiper2 rounded-md md:rounded-3xl">
+                
+                <div class="swiper-wrapper">
+                    
+                    @foreach ($recipes as $recipe)
+                    <div class="swiper-slide">
                         
-                        <a href="{{ route('recipe.show', $recipe) }}">
-                            <x-recipeCard :recipe=$recipe/>
-                        </a>
-
+                        <x-recipeCard :recipe=$recipe :user="$user"/>
+                        
                     </div>
+                    @endforeach
+                    
                 </div>
-                @endforeach
-
+                <div class="swiper-button-prev swiper-button-prev2 text-primary"></div>
+                <div class="swiper-button-next swiper-button-next2 text-primary"></div>
             </div>
-            <div class="swiper-button-prev swiper-button-prev2 text-orange-500"></div>
-            <div class="swiper-button-next swiper-button-next2 text-orange-500"></div>
             
-        </div>
+        @endif
+            
     </div>
 
 </section>

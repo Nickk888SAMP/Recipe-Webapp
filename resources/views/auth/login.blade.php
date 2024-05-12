@@ -23,13 +23,13 @@
             </div>
 
             {{-- Button --}}
-            <button class="w-full text-white font-semibold mt-4 rounded-full p-2 bg-orange-500">Einloggen</button>
+            <x-button class="w-full">Einloggen</x-button>
         </form>
 
         {{-- Already an account --}}
         <p class="mt-8 font-medium flex justify-center">Du hast noch kein Kochbuch-Konto?</p>
         <div class="mt-4 flex justify-center">
-            <a class="text-orange-500 font-semibold" href="{{ route('auth.register.index') }}">Neues Konto erstellen</a>
+            <a class="text-primary font-semibold" href="{{ route('auth.register.index') }}">Neues Konto erstellen</a>
         </div>
     </div>
 
