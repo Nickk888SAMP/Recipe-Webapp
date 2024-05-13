@@ -50,16 +50,21 @@
             </div>
             <div class="mt-4 flex justify-between">
                 <label class="text-2xl font-semibold">Zutaten</label>
-                <x-button wire:click="addIngredient">Add</x-button>
+                <x-button class="rounded-full" type="button" wire:click="addIngredient">
+                    <div class="flex items-center gap-1">
+                        <svg class="h-5" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="12" y1="5" x2="12" y2="19" />  <line x1="5" y1="12" x2="19" y2="12" /></svg>
+                        Neue Zutat
+                    </div>
+                </x-button>
             </div>
             <div class="mt-4 flex flex-col gap-2">
-                @foreach ($ingredients as $ingredient)
+                @foreach ($ingredients as $index => $value)
                         
                 <div class="flex justify-between items-center">
                     
-                    <x-inputfield class="w-full rounded-l-lg h-10" type="number"/>
+                    <x-inputfield wire:model="ingredients.{{$index}}.amount" class="w-full rounded-l-lg h-10" type="number"/>
                     
-                    <select class="outline outline-2 outline-primary p-2 h-10" name="difficulty">
+                    <select wire:model="ingredients.{{$index}}.unit" class="outline outline-2 outline-primary p-2 h-10" name="difficulty">
                         <option value="0">Becher</option>
                         <option value="1">Barlöffel</option>
                         <option value="2">Blatt</option>
@@ -71,12 +76,13 @@
                     </select>
 
                     <div class="w-full">
-                        <x-inputfield class="w-full h-10 rounded-r-lg"/>
+                        <x-inputfield wire:model="ingredients.{{$index}}.ingredient" placeholder="Zutat eingeben Zb. Milch, Zwiebel, Olivenöl etc." class="w-full h-10"/>
                     </div>
 
-                    <div>
-                        <x-button wire:click="removeIngredient({{ $ingredient }})">Delete</x-button>
-                    </div>
+                    <x-button class="ml-0.5 outline outline-2 outline-primary rounded-r-md" type="button" wire:click="removeIngredient({{ $index }})">
+                        <svg class="w-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="4" y1="7" x2="20" y2="7" />  <line x1="10" y1="11" x2="10" y2="17" />  <line x1="14" y1="11" x2="14" y2="17" />  <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />  <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>
+                    </x-button>
+                    
                 </div>
                 @endforeach
             </div>
@@ -84,7 +90,7 @@
 
 
         <div class="mt-4">
-            <x-button type="submit" class="w-full">Rezept Erstellen</x-button>
+            <x-button type="submit" class="w-full rounded-full">Rezept Erstellen</x-button>
         </div>
     </form>
 </div>

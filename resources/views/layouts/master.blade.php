@@ -40,6 +40,7 @@
         @include('layouts.scripts')
         @livewire('livewire-ui-modal')
         @livewireScripts
+        
     </body>
 
     <footer>

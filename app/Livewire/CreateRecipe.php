@@ -3,36 +3,32 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use App\Models\Ingredient;
+
 
 class CreateRecipe extends Component
 {
     public $ingredients;
 
-    protected $listeners = ['removeIngredient'];
-
-
     public function mount()
     {
-        $this->ingredients = array(new Ingredient());
+        $this->ingredients = array(['amount' => 0, 'unit' => 4, 'ingredient' => '']);
     }
 
     public function addIngredient()
     {
-        $newIngredient = new Ingredient();
-        // $this->emit('removeIngredient', $newIngredient);
+        $newIngredient = ['amount' => 0, 'unit' => 4, 'ingredient' => ''];
         array_push($this->ingredients, $newIngredient);
     }
 
     public function removeIngredient($index)
     {
-        dd($index);
-        unset($index);
+        unset($this->ingredients[$index]);
+        $this->ingredients = array_values($this->ingredients);
     }
 
     public function save()
     {
-
+        dd($this->ingredients);
     }
 
     public function render()

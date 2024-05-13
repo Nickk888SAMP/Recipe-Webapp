@@ -42,7 +42,7 @@
             </div>
 
             {{-- Button --}}
-            <x-button class="w-full">Profil aktualisieren</x-button>
+            <x-button class="w-full mt-4 rounded-md">Profil aktualisieren</x-button>
         </form>
     </x-section>
 
@@ -80,7 +80,7 @@
             </div>
 
             {{-- Button --}}
-            <x-button class="w-full">Passwort ändern</x-button>
+            <x-button class="w-full mt-4 rounded-md">Passwort ändern</x-button>
         </form>
     </x-section>
 @endsection
