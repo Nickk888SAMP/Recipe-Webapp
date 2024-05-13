@@ -75,7 +75,7 @@
                     </div>
 
                     <div>
-                        <x-button>Delete</x-button>
+                        <x-button wire:click="removeIngredient({{ $ingredient }})">Delete</x-button>
                     </div>
                 </div>
                 @endforeach

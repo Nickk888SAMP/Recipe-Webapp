@@ -43,7 +43,7 @@ class ProfileController extends Controller
         $user->description = $request->description;
         $user->save();
 
-        toastr()->success('Profil wurde aktualisiert.');
+        // toastr()->success('Profil wurde aktualisiert.');
         return redirect()->back();
     }
 

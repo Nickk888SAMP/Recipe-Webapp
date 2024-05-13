@@ -9,14 +9,25 @@ class CreateRecipe extends Component
 {
     public $ingredients;
 
-    public function boot()
+    protected $listeners = ['removeIngredient'];
+
+
+    public function mount()
     {
         $this->ingredients = array(new Ingredient());
     }
 
     public function addIngredient()
     {
-        array_push($this->ingredients, new Ingredient());
+        $newIngredient = new Ingredient();
+        // $this->emit('removeIngredient', $newIngredient);
+        array_push($this->ingredients, $newIngredient);
+    }
+
+    public function removeIngredient($index)
+    {
+        dd($index);
+        unset($index);
     }
 
     public function save()

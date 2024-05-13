@@ -7,6 +7,8 @@ use App\Models\Recipe;
 use App\Models\User;
 use App\Models\Favorite;
 
+use Livewire\Attributes\On; 
+
 
 class FavoriteRecipeButton extends Component
 {
@@ -46,7 +48,9 @@ class FavoriteRecipeButton extends Component
             $this->userfavorite->save();
         }
 
-        $this->checkFavorite();
+        $this->dispatch('post-created'); 
+
+        // $this->checkFavorite();
         if($this->isFavorite)
         {
            
@@ -65,13 +69,16 @@ class FavoriteRecipeButton extends Component
             ])->first();
     }
 
+    
     private function checkFavorite()
     {
         $this->isFavorite = ($this->userfavorite != null && $this->userfavorite->isliking);
     }
 
+    #[On('post-created')] 
     public function render()
     {
+        $this->checkFavorite();
         return view('livewire.favorite-recipe-button');
     }
 }
