@@ -12,17 +12,18 @@
         <title>Das Kochbuch - 350.000 Rezepte zum Nachkochen.</title>
 
         {{-- Scripts --}}
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
+        
         {{-- Fonts --}}
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-
+        
         {{-- Style --}}
         @vite('resources/css/app.css')
+        @vite('resources/js/app.js')
         @livewireStyles
+        
 
     </head>
     
@@ -40,7 +41,6 @@
         @include('layouts.scripts')
         @livewire('livewire-ui-modal')
         @livewireScripts
-        
     </body>
 
     <footer>

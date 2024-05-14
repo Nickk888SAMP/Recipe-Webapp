@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class RecipeImage extends Model
 {
     use HasFactory;
+    protected $fillable = ['user_id', 'recipe_id', 'image_path'];
+
+    public function recipe()
+    {
+        return $this->hasOne(Recipe::class);
+    }
 }

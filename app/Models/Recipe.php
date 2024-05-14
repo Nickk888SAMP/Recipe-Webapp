@@ -47,7 +47,7 @@ class Recipe extends Model
 
     public function ingredients(): HasMany
     {
-        return $this->hasMany(Ingredient::class);
+        return $this->hasMany(Ingredient::class)->orderBy('order', 'asc');
     }
 
     public function preparingSteps(): HasMany
@@ -58,6 +58,16 @@ class Recipe extends Model
     public function images(): HasMany
     {
         return $this->hasMany(RecipeImage::class);
+    }
+
+    public function imagesNormalized()
+    {
+        $images = $this->images;
+        if(count($images))
+        {
+            return asset($this->images->first()->image_path);
+        }
+        return asset('img/stockfood-2.jpg');
     }
 
     public function reviews(): HasMany

@@ -33,14 +33,15 @@
     {{-- Entries --}}
     @foreach ($recipe->ingredients as $ingredient)
 
-        <div class="grid grid-cols-5 gap-4 mt-2">
-            <div class="flex justify-end col-span-2 md:col-span-1">
-                <p>{{ round($ingredient->amount * $servings)  }} {{ $ingredient->unit }}</p>
-            </div>
-            <div class="col-span-3 md:col-span-4">
-                <p>{{ $ingredient->ingredient }}</p>
-            </div>
+    <div class="grid grid-cols-5 gap-8 mt-2">
+        <div class="flex justify-end gap-1 col-span-1 md:col-span-1">
+            <p>{{ round($ingredient->amount * $servings)  }}</p>
+            <p class="text-primary font-semibold">{{ $ingredient->unit->short }}</p>
         </div>
+        <div class="col-span-4 md:col-span-4">
+            <p>{{ $ingredient->ingredient }}</p>
+        </div>
+    </div>
 
     @endforeach
 </div>

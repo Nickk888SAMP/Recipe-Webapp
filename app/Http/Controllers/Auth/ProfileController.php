@@ -3,14 +3,16 @@
 namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
+use App\Traits\HelpersTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use File;
-use Str;
 
 class ProfileController extends Controller
 {
+    use HelpersTrait;
+
     public function edit(Request $request)
     {
         $user = Auth::user();
@@ -64,13 +66,4 @@ class ProfileController extends Controller
         return redirect()->back();
     }
 
-    public function generateFilename() 
-    {
-        $filename = Str::random(40);
-        if (File::exists(public_path($filename))) 
-        {
-            $filename = $this->generateFilename();
-        }
-        return $filename;
-    }
 }

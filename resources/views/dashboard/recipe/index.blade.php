@@ -38,7 +38,7 @@
 
                             {{-- Image --}}
                             <div class="flex-shrink-0 h-24 w-32 rounded-md overflow-hidden flex items-center">
-                                <img :class="hover ? 'scale-110' : ''" class="object-cover w-full h-full transition duration-500" src="{{ asset('img/stockfood-2.jpg') }}">
+                                <img :class="hover ? 'scale-110' : ''" class="object-cover w-full h-full transition duration-500" src="{{ $recipe->imagesNormalized() }}">
                             </div>
 
                             <div class="flex flex-col">

@@ -16,7 +16,7 @@
 
     {{-- Image --}}
     <div class="sm:row-span-2 md:col-span-2 h-[300px] overflow-hidden md:h-[400px] lg:h-[500px] flex rounded-md md:rounded-l-3xl md:rounded-b-3xl">
-        <img class="object-cover h-full w-full hover:scale-105 transition duration-500" src="{{ asset('img/stockfood-2.jpg') }}" alt="">
+        <img class="object-cover h-full w-full hover:scale-105 transition duration-500" src="{{ $recipe->imagesNormalized() }}" alt="">
         <div class="absolute p-2">
             <livewire:favorite-recipe-button class="relative" :recipe="$recipe" :user="$user"/>
         </div>
