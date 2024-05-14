@@ -68,8 +68,27 @@
     <x-sectionlabel>Zubereitung</x-sectionlabel>
 
     {{-- Steps --}}
+    @php
+        $counter = 1;
+    @endphp
     <div class="mt-4">
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ducimus doloribus deserunt officiis enim dolor ad natus facilis veritatis optio suscipit modi numquam, quaerat consequatur saepe quo assumenda soluta minus magni!</p>
+        @if(count($recipe->preparingSteps) > 4)
+            <div class="flex flex-col gap-4">
+                @foreach ($recipe->preparingSteps as $prepareStep)
+                <div class="flex gap-1 text-lg">
+                    <p class="text-primary">{{ $counter }}. </p>
+                    <p>{{ $prepareStep->preparing_text }}</p>
+                </div>    
+                    @php
+                        $counter++;
+                    @endphp
+                @endforeach
+            </div>
+        @else
+            <x-noitemsinfo>
+                Keine spezifischen Zubereitungsschritte angegeben?<br>Keine Sorge! Dieses Rezept ist so unkompliziert, dass es fast von selbst zubereitet wird. 
+            </x-noitemsinfo>
+        @endif
     </div>
 
 </x-section>

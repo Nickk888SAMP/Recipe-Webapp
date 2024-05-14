@@ -12,10 +12,21 @@ use App\Models\Ingredient;
 use App\Models\RecipeImage;
 use App\Models\Review;
 use App\Models\User;
+use App\Models\PreparingStep;
 
 class Recipe extends Model
 {
     use HasFactory, WithPagination, WithoutUrlPagination;
+
+    protected $fillable = [
+        'name',
+        'description',
+        'servings',
+        'kcalories',
+        'preptime',
+        'difficulty',
+        'user_id'
+    ];
 
     public function getPrepTime(bool $shorter = false)
     {
@@ -37,6 +48,11 @@ class Recipe extends Model
     public function ingredients(): HasMany
     {
         return $this->hasMany(Ingredient::class);
+    }
+
+    public function preparingSteps(): HasMany
+    {
+        return $this->hasMany(PreparingStep::class);
     }
 
     public function images(): HasMany

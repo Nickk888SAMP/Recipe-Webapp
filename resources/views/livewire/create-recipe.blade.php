@@ -2,17 +2,27 @@
     <form wire:submit="save">
         @csrf
         <div>
+            {{-- Title --}}
             <x-inputfieldlabel for="name" text="Name"/>
-            <x-inputfield class="w-full rounded-md" name="name"/>
+            <x-inputfield wire:model="form.name" class="w-full rounded-md" name="name"/>
         </div>
         <div class="mt-4">
+            {{-- Description --}}
             <x-inputfieldlabel for="description" text="Beschreibung"/>
-            <x-textfield class="w-full rounded-md" name="description"/>
+            <x-textfield class="w-full rounded-md" wire:model="form.description" name="description"/>
+        </div>
+        <div class="mt-4">
+            {{-- Preparing --}}
+            <x-inputfieldlabel for="preparing" text="Zubereitung"/>
+            <x-textfield class="w-full rounded-md" wire:model="form.preparing" name="preparing"/>
         </div>
         <div class="mt-4">
 
             <div class="flex justify-between">
+                {{-- Prep Time --}}
                 <label class="text-2xl font-semibold">Zubereitungszeit</label>
+                
+                {{-- Prep Difficulty --}}
                 <label class="text-2xl font-semibold">Schwierigkeit</label>
 
             </div>
@@ -21,16 +31,16 @@
                 <div class="flex gap-4">
                     <div>
                         <x-inputfieldlabel for="preptime_hours" text="Stunden"/>
-                        <x-inputfield class="w-16 rounded-md" type="number" name="preptime_hours" min="0" max="999" value="0"/>
+                        <x-inputfield wire:model="form.prepTimeHours" name="preptime_hours" class="w-16 rounded-md" type="number" min="0" max="999" value="0"/>
                     </div>
                     <div>
                         <x-inputfieldlabel for="preptime_minutes" text="Minuten"/>
-                        <x-inputfield class="w-16 rounded-md" type="number" name="preptime_minutes" min="0" max="60" value="0"/>
+                        <x-inputfield wire:model="form.prepTimeMinutes" name="preptime_minutes" class="w-16 rounded-md" type="number" min="0" max="60" value="0"/>
                     </div>
                 </div>
 
                 <div class="mt-7">
-                    <select class="rounded-lg outline outline-2 outline-primary p-2 w-full h-10" name="difficulty">
+                    <select class="rounded-lg outline outline-2 outline-primary p-2 w-full h-10" wire:model="form.prepDifficulty" name="difficulty">
                         <option value="0">Leicht</option>
                         <option value="1">Mittel</option>
                         <option value="2">Anspruchsvoll</option>
@@ -41,12 +51,18 @@
         <div class="mt-4">
 
             <x-inputfieldlabel for="preptime_hours" text="Bilder"/>
-            <x-inputfield multiple class="w-full rounded-lg" accept="image/png, image/jpeg, image/bmp" type="file"/>
+            <x-inputfield wire:model="form.image" multiple class="w-full rounded-lg" accept="image/png, image/jpeg, image/bmp" type="file"/>
         </div>
         <div class="mt-4">
-            <div>
-                <x-inputfieldlabel for="servings" text="Für wie viele personen ist dieses rezept?"/>
-                <x-inputfield class="w-16 rounded-lg" type="number" min="1" max="999" value="4"/>
+            <div class="flex items-center justify-between">
+                <div>
+                    <x-inputfieldlabel for="servings" text="Für wie viele personen ist dieses rezept?"/>
+                    <x-inputfield class="w-16 rounded-lg" wire:model="form.servings" type="number" min="1" max="999" value="4"/>
+                </div>
+                <div>
+                    <x-inputfieldlabel for="kcalories" text="Wie viele Kilokalorien pro Portion?"/>
+                    <x-inputfield class="w-24 rounded-lg" wire:model="form.kcalories" type="number" min="1" max="99999" value="0"/>
+                </div>
             </div>
             <div class="mt-4 flex justify-between">
                 <label class="text-2xl font-semibold">Zutaten</label>
@@ -69,7 +85,7 @@
                         <option value="1">Barlöffel</option>
                         <option value="2">Blatt</option>
                         <option value="3">Bund</option>
-                        <option value="4">Zentiliter</option>
+#                        <option value="4">Zentiliter</option>
                         <option value="5">Zentimeter</option>
                         <option value="6">Dash</option>
                         <option value="7">Dose</option>
