@@ -39,6 +39,8 @@
             <div class="mt-2 px-8 flex flex-col md:items-center">
                 <x-rating :recipe=$recipe/>
                 <div class="py-1 flex justify-center gap-4 text-sm">
+
+                    {{-- Prep Time --}}
                     <x-preptime :recipe=$recipe/>
                     <x-prepdifficulty :recipe=$recipe/>
                 </div>
