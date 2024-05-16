@@ -1,6 +1,6 @@
 <div>
     <div class="absolute z-10 p-2">
-        <livewire:favoriterecipebutton class="relative" :recipe="$recipe" :user="$user"/>
+        <livewire:favoriterecipebutton lazy class="relative" :recipe="$recipe" :user="$user"/>
     </div>
     <div x-data="{ hover: false }" x-on:mouseover="hover = true" x-on:mouseout="hover = false">                    
         <a href="{{ route('recipe.show', $recipe) }}">

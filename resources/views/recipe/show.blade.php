@@ -18,7 +18,7 @@
     <div class="sm:row-span-2 md:col-span-2 h-[300px] overflow-hidden md:h-[400px] lg:h-[500px] flex rounded-md md:rounded-l-3xl md:rounded-b-3xl">
         <img class="object-cover h-full w-full hover:scale-105 transition duration-500" src="{{ $recipe->imagesNormalized() }}" alt="">
         <div class="absolute p-2">
-            <livewire:favorite-recipe-button class="relative" :recipe="$recipe" :user="$user"/>
+            <livewire:favorite-recipe-button lazy class="relative" :recipe="$recipe" :user="$user"/>
         </div>
     </div>
 
@@ -57,38 +57,16 @@
 {{-- Ingredients --}}
 <x-section>
 
-    <livewire:ingredientslist :recipe="$recipe"/>
+    <livewire:ingredientslist lazy :recipe="$recipe"/>
 
 </x-section>
 
 {{-- Preparation Steps --}}
 <x-section>
 
-    {{-- Label --}}
-    <x-sectionlabel>Zubereitung</x-sectionlabel>
-
     {{-- Steps --}}
-    @php
-        $counter = 1;
-    @endphp
-    <div class="mt-4">
-        @if(count($recipe->preparingSteps) > 4)
-            <div class="flex flex-col gap-4">
-                @foreach ($recipe->preparingSteps as $prepareStep)
-                <div class="flex gap-1 text-lg">
-                    <p class="text-primary">{{ $counter }}. </p>
-                    <p>{{ $prepareStep->preparing_text }}</p>
-                </div>    
-                    @php
-                        $counter++;
-                    @endphp
-                @endforeach
-            </div>
-        @else
-            <x-noitemsinfo>
-                Keine spezifischen Zubereitungsschritte angegeben?<br>Keine Sorge! Dieses Rezept ist so unkompliziert, dass es fast von selbst zubereitet wird. 
-            </x-noitemsinfo>
-        @endif
+    <div>
+       <livewire:preparingsteps lazy :recipe="$recipe"/>
     </div>
 
 </x-section>

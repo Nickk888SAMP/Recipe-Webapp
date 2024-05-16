@@ -14,7 +14,7 @@ module.exports = {
       xl: '1440px'
     },
     fontFamily: {
-      sans: ['Roboto', 'sans-serif'],
+      sans: ['Poppins'],
     },
     extend: {
       fontSize: {

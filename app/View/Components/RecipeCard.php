@@ -24,6 +24,11 @@ class RecipeCard extends Component
         $this->user = $user;
     }
 
+    public function placeholder(array $params = [])
+    {
+        return view('components.livewire-lazy-placeholder', $params);
+    }
+
     /**
      * Get the view / contents that represent the component.
      */

@@ -52,7 +52,7 @@ class Recipe extends Model
 
     public function preparingSteps(): HasMany
     {
-        return $this->hasMany(PreparingStep::class);
+        return $this->hasMany(PreparingStep::class)->orderBy('step_number', 'asc');
     }
 
     public function images(): HasMany

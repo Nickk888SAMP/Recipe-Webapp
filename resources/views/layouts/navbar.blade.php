@@ -54,7 +54,7 @@
                     {{-- Menu --}}
                     <div x-cloak x-show="show" class="absolute top-0 translate-y-[25%] -translate-x-[40%]" x-on:click.outside="show = false">
                         <div class="relative bg-white p-4 shadow-lg font-medium text-lg flex flex-col gap-4 w-52 items-center">
-                            <p class="text-sm font-semibold text-slate-800">Hallo, {{ $user->displayname }}</p>
+                            <p class="text-sm font-semibold text-primary">Hallo, {{ $user->displayname }}</p>
                             <a class="hover:text-tritary text-slate-500  transition" href="{{ route('user.show', ['user' => $user]) }}">Mein Profil</a>
                             <a class="hover:text-tritary text-slate-500  transition" href="{{ route('dashboard.edit') }}">Profil Bearbeiten</a>
                             <a class="hover:text-tritary text-slate-500  transition" href="{{ route('dashboard.recipees') }}">Meine Rezepte</a>
@@ -72,7 +72,7 @@
         </div>
 
         {{-- Categories --}}
-        <div class="hidden md:flex justify-center space-x-10 pt-4 font-medium text-lg text-slate-600">
+        <div class="hidden md:flex justify-center items-center space-x-10 pt-4 font-medium text-lg text-slate-500">
             <a class="hover:text-primary transition" href="#">Alle Rezepte</a>
             <a class="hover:text-primary transition" href="#">Kochen</a>
             <a class="hover:text-primary transition" href="#">Backen</a>
@@ -87,7 +87,7 @@
         x-on:click.outside="mobileCategoriesOpen = false" 
         x-transition 
         class="md:hidden absolute w-full bg-white z-40 shadow-lg top-[100%] left-0 rounded-b-xl">
-        <div class="flex flex-col text-center space-y-1 p-4 font-medium text-lg text-slate-600 divide-y">
+        <div class="flex flex-col text-center space-y-1 p-4 font-medium text-lg text-slate-500 divide-y">
             
             {{-- Login Button --}}
             @if (!auth()->check())

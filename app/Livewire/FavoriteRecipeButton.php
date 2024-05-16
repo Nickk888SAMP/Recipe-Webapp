@@ -24,6 +24,11 @@ class FavoriteRecipeButton extends Component
         $this->checkFavorite();
     }
 
+    public function placeholder(array $params = [])
+    {
+        return view('components.livewire-lazy-placeholder', $params);
+    }
+
     
     public function toggle()
     {

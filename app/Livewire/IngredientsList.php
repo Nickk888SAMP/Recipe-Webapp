@@ -14,6 +14,11 @@ class IngredientsList extends Component
         $this->servings = $this->recipe->servings;
     }
 
+    public function placeholder(array $params = [])
+    {
+        return view('components.livewire-lazy-placeholder', $params);
+    }
+
     public function updatedServings($value)
     {
         $this->servings = max(1, min(999, $value));

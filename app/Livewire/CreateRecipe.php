@@ -61,7 +61,7 @@ class CreateRecipe extends Component
             'description' => $this->form->description,
             'servings' => $this->form->servings,
             'preptime' => ($this->form->prepTimeHours * 60) + ($this->form->prepTimeMinutes),
-            'difficulty' => $this->form->prepDifficulty,
+            'difficulty' => $this->numToDifficulty($this->form->prepDifficulty),
             'kcalories' => $this->form->kcalories,
             'preparing' => $this->form->preparing,
             'user_id' => auth()->user()->id

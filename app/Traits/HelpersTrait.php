@@ -16,4 +16,15 @@ trait HelpersTrait
         }
         return $filename;
     }
+
+    public function numToDifficulty($num)
+    {
+        switch($num)
+        {
+            case 0: return "simple";
+            case 1: return "medium";
+            case 2: return "hard";
+        }
+        return "";
+    }
 }
