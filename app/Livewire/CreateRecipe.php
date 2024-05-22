@@ -2,12 +2,15 @@
 
 namespace App\Livewire;
 
+use App\Livewire\Request;
 use Livewire\Component;
 use App\Livewire\Forms\CreateRecipeForm;
 use App\Models\Recipe;
 use App\Models\Ingredient;
 use App\Models\IngredientUnit;
 use App\Models\RecipeImage;
+use App\Models\PreparingStep;
+
 use App\Traits\HelpersTrait;
 use Livewire\WithFileUploads;
 
@@ -16,46 +19,74 @@ class CreateRecipe extends Component
     use WithFileUploads, HelpersTrait;
 
     public CreateRecipeForm $form;
-    public $ingredients;
     
 
     public function mount()
     {
-        $this->ingredients = array(['amount' => 0, 'unit' => 1, 'ingredient' => '']);
+        $this->form->ingredients = array(['amount' => 0, 'unit' => 1, 'ingredient' => '']);
+        $this->form->prepSteps = array(null);
     }
-
-    public function addIngredient()
-    {
-        $newIngredient = ['amount' => 0, 'unit' => 0, 'ingredient' => ''];
-        array_push($this->ingredients, $newIngredient);
-    }
-
+    
     public function removeImage($index)
     {
         array_splice($this->form->images, $index, 1);
     }
 
-    public function removeIngredient($index)
+    public function addPrepStep()
     {
-        if(count($this->ingredients) == 1)
-            return;
-
-        unset($this->ingredients[$index]);
-        $this->ingredients = array_values($this->ingredients);
+        $newPrepStep = array(null);
+        array_push($this->form->prepSteps, $newPrepStep);
     }
 
-    public function updateOrder($list)
+    public function removePrepStep($index)
+    {
+        if(count($this->form->prepSteps) == 1)
+            return;
+
+        unset($this->form->prepSteps[$index]);
+        $this->form->prepSteps = array_values($this->form->prepSteps);
+    }
+
+    public function addIngredient()
+    {
+        $newIngredient = ['amount' => 0, 'unit' => 0, 'ingredient' => ''];
+        array_push($this->form->ingredients, $newIngredient);
+    }
+
+    public function removeIngredient($index)
+    {
+        if(count($this->form->ingredients) == 1)
+            return;
+
+        unset($this->form->ingredients[$index]);
+        $this->form->ingredients = array_values($this->form->ingredients);
+    }
+
+    public function updateIngredientsOrder($list)
     {
         $newArray = array();
         foreach($list as $key => $value)
         {
-            array_push($newArray, $this->ingredients[ $value['value'] ]);
+            array_push($newArray, $this->form->ingredients[ $value['value'] ]);
         }
-        $this->ingredients = $newArray;
+        $this->form->ingredients = $newArray;
     }
 
-    public function save()
+    public function updatePrepStepsOrder($list)
     {
+        $newArray = array();
+        foreach($list as $key => $value)
+        {
+            array_push($newArray, $this->form->prepSteps[ $value['value'] ]);
+        }
+        $this->form->prepSteps = $newArray;
+    }
+
+    public function save(Request $request)
+    {
+        dd($request);
+
+        //Recipe
         $recipe = Recipe::create([
             'name' => $this->form->name,
             'description' => $this->form->description,
@@ -63,11 +94,11 @@ class CreateRecipe extends Component
             'preptime' => ($this->form->prepTimeHours * 60) + ($this->form->prepTimeMinutes),
             'difficulty' => $this->numToDifficulty($this->form->prepDifficulty),
             'kcalories' => $this->form->kcalories,
-            'preparing' => $this->form->preparing,
             'user_id' => auth()->user()->id
         ]);
 
-        foreach($this->ingredients as $index => $ingredient)
+        // Ingredients
+        foreach($this->form->ingredients as $index => $ingredient)
         {
             $unit = IngredientUnit::findOrFail($ingredient['unit']);
             Ingredient::create([
@@ -79,6 +110,17 @@ class CreateRecipe extends Component
             ]);
         }
 
+        // Prep Steps
+        foreach($this->form->prepSteps as $index => $prepStep)
+        {
+            PreparingStep::create([
+                'recipe_id' => $recipe->id,
+                'step_number' => $index,
+                'preparing_text' => $prepStep
+            ]);
+        }
+
+        // Images
         foreach($this->form->images as $image)
         {
             $imageName = $this->generateFilename() . "." . $image->extension();

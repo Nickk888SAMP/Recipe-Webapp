@@ -11,6 +11,9 @@ use App\Http\Controllers\UserRecipeController;
 use App\Http\Controllers\UserReviewController;
 use App\Http\Controllers\UserMessageController;
 use App\Http\Controllers\UserFavoriteController;
+use App\Http\Controllers\AdminController;
+use App\Http\Middleware\AdminAuth;
+
 
 // Home
 Route::get('/', function () 
@@ -59,6 +62,12 @@ Route::controller(UserMessageController::class)->prefix('dashboard')->middleware
 
 Route::controller(UserFavoriteController::class)->prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/favorites', 'index')->name('dashboard.favorites');
+});
+
+// Admin Dashboard
+Route::controller(AdminController::class)->prefix('admin')->middleware(['auth', 'auth.admin'])->group(function () {
+    Route::get('/dashboard', 'index')->name('admin.dashboard');
+    // Route::get('/measurementunits', 'index')->name('admin.dashboard');
 });
 
 // Fallback

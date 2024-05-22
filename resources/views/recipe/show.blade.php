@@ -43,6 +43,7 @@
                     {{-- Prep Time --}}
                     <x-preptime :recipe=$recipe/>
                     <x-prepdifficulty :recipe=$recipe/>
+                    <x-kcalories :recipe=$recipe/>
                 </div>
             </div>
         </div>
