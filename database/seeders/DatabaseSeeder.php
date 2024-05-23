@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Ingredient;
 use App\Models\IngredientUnit;
+use App\Models\PreparingStep;
 use Illuminate\Database\Seeder;
 use App\Models\User;
 use App\Models\Recipe;
@@ -42,10 +43,12 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        // Ingredients
         $recipes = Recipe::all();
         foreach($recipes as $recipe)
         {
-            for($i = 0; $i < rand(3, 15); $i++)
+            $rand = rand(3, 15);
+            for($i = 0; $i < $rand; $i++)
             {
                 $unit = IngredientUnit::all()->random();
                 Ingredient::factory()->create([
@@ -54,6 +57,20 @@ class DatabaseSeeder extends Seeder
                     'amount' => rand(1, 1000) / $recipe->servings,
                     'ingredient' => fake()->word(),
                     'order' => 0
+                ]);
+            }
+        }
+
+        // Preparing Steps
+        foreach($recipes as $recipe)
+        {
+            $rand = rand(3, 15);
+            for($i = 0; $i < $rand; $i++)
+            {
+                PreparingStep::factory()->create([
+                    'recipe_id' => $recipe,
+                    'step_number' => $i,
+                    'preparing_text' => fake()->sentence()
                 ]);
             }
         }

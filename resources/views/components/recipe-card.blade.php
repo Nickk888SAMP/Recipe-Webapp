@@ -29,7 +29,7 @@
                 <x-rating :recipe=$recipe/>
 
                 {{-- Time and Difficulty --}}
-                <div class="py-1 flex items gap-4 text-sm">
+                <div class="py-1 flex flex-wrap gap-4 text-sm">
                     <x-preptime :recipe=$recipe/>
                     <x-prepdifficulty :recipe=$recipe/>
                 </div>

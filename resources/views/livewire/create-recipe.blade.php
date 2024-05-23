@@ -39,10 +39,10 @@
 
                 <div class="mt-8">
                     {{-- Difficulty --}}
-                    <select class="rounded-lg outline outline-2 outline-primary p-2 w-full h-10" wire:model="form.prepDifficulty" name="difficulty">
-                        <option value="0">Leicht</option>
-                        <option value="1">Mittel</option>
-                        <option value="2">Anspruchsvoll</option>
+                    <select class="rounded-lg bg-white outline outline-2 outline-primary p-2 w-full h-10" wire:model="form.prepDifficulty" name="difficulty">
+                        @for ($i = 0; $i <= 2; $i++)
+                            <option value="{{ $i }}">{{ App\Models\Recipe::numToDifficulty($i) }}</option> 
+                        @endfor
                     </select>
                 </div>
             </div>
@@ -122,7 +122,7 @@
                         <x-inputfield wire:model="form.ingredients.{{$index}}.amount" class="w-full h-10" type="number"/>
                         
                         {{-- Ingredient Unit --}}
-                        <select wire:model="form.ingredients.{{$index}}.unit" class="outline outline-2 outline-primary p-2 h-10" name="difficulty">
+                        <select wire:model="form.ingredients.{{$index}}.unit" class="outline outline-2 outline-primary p-2 h-10 bg-white" name="difficulty">
                             @foreach ($ingredientUnits as $ingredientUnit)
                                 <option value="{{ $ingredientUnit->id }}">{{ $ingredientUnit->long }} : {{ $ingredientUnit->short }}</option>
                             @endforeach
@@ -174,7 +174,7 @@
                         </div>
 
                         {{-- Prep Step Order --}}
-                        <div class="w-14 h-10 flex justify-center items-center outline outline-primary outline-2">
+                        <div class="w-14 h-10 flex justify-center items-center bg-white outline outline-primary outline-2">
                             <p>{{ ($index + 1) }}</p>
                         </div>
 

@@ -34,16 +34,21 @@
             <p class="font-semibold text-sm text-primary">{{ $recipe->user->displayname }}</p>
         </div>
 
-        {{-- Rating --}}
+        
         <div class="flex justify-evenly">
-            <div class="mt-2 px-8 flex flex-col md:items-center">
+            <div class="mt-2 px-8 flex flex-col items-center">
+
+                {{-- Rating --}}
                 <x-rating :recipe=$recipe/>
-                <div class="py-1 flex justify-center gap-4 text-sm">
+
+                {{-- Informations --}}
+                <div class="flex flex-wrap py-1 justify-center content-center gap-4 text-sm grid-sh">
 
                     {{-- Prep Time --}}
                     <x-preptime :recipe=$recipe/>
                     <x-prepdifficulty :recipe=$recipe/>
                     <x-kcalories :recipe=$recipe/>
+                    <x-createdate :recipe=$recipe/>
                 </div>
             </div>
         </div>
@@ -67,10 +72,7 @@
 {{-- Preparation Steps --}}
 <x-section>
 
-    {{-- Steps --}}
-    <div>
-       <livewire:preparingsteps lazy :recipe="$recipe"/>
-    </div>
+    <livewire:preparingsteps lazy :recipe="$recipe"/>
 
 </x-section>
 

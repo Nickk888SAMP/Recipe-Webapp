@@ -24,7 +24,7 @@ class RecipeFactory extends Factory
             'servings' => rand(2, 8),
             'kcalories' => rand(100, 3500),
             'preptime' => rand(10, 120),
-            'difficulty' => fake()->randomElement(['simple', 'medium', 'hard']),
+            'difficulty' => rand(0, 2),
             'user_id' => $randUser->id
         ];
     }

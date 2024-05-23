@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('servings');
             $table->integer('kcalories');
             $table->integer('preptime');
-            $table->enum('difficulty', ['simple', 'medium', 'hard'])->default('medium');
+            $table->integer('difficulty');
             $table->foreignIdFor(User::class)->constrained();
             $table->timestamps();
         });

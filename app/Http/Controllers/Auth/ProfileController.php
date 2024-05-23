@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use File;
+use ImageOptimizer;
+use Spatie\ImageOptimizer\OptimizerChainFactory;
+
+
 
 class ProfileController extends Controller
 {
@@ -38,6 +42,12 @@ class ProfileController extends Controller
             $imageName = $this->generateFilename() . "." . $file->extension();
             $file->storeAs('uploads/avatars', $imageName);
             $path = "storage/uploads/avatars/" . $imageName;
+            
+            $optimizerChain = OptimizerChainFactory::create();
+
+            // $optimizerChain->optimize('C:\Users\Kevin Duda\Documents\Programming Projects\Laravel\recipebrowser\storage\app\public\uploads\recipees\RFLgH3WbgSIIC76QsUgmjFuO7MoiFDCSmExxpadR.jpg');
+            dd($optimizerChain->optimize('C:\Users\Kevin Duda\Documents\Programming Projects\Laravel\recipebrowser\storage\app\public\uploads\recipees\RFLgH3WbgSIIC76QsUgmjFuO7MoiFDCSmExxpadR.jpg'));
+            // dd(ImageOptimizer::optimize());
             $user->avatar = $path;
         }
 

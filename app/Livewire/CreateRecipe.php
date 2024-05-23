@@ -13,6 +13,7 @@ use App\Models\PreparingStep;
 
 use App\Traits\HelpersTrait;
 use Livewire\WithFileUploads;
+use ImageOptimizer;
 
 class CreateRecipe extends Component
 {
@@ -82,9 +83,9 @@ class CreateRecipe extends Component
         $this->form->prepSteps = $newArray;
     }
 
-    public function save(Request $request)
+    public function save()
     {
-        dd($request);
+        // dd($request);
 
         //Recipe
         $recipe = Recipe::create([
@@ -92,7 +93,7 @@ class CreateRecipe extends Component
             'description' => $this->form->description,
             'servings' => $this->form->servings,
             'preptime' => ($this->form->prepTimeHours * 60) + ($this->form->prepTimeMinutes),
-            'difficulty' => $this->numToDifficulty($this->form->prepDifficulty),
+            'difficulty' => $this->form->prepDifficulty,
             'kcalories' => $this->form->kcalories,
             'user_id' => auth()->user()->id
         ]);
@@ -126,6 +127,7 @@ class CreateRecipe extends Component
             $imageName = $this->generateFilename() . "." . $image->extension();
             $image->storeAs('uploads/recipees', $imageName);
             $path = "storage/uploads/recipees/" . $imageName;
+            ImageOptimizer::optimize($path);
             RecipeImage::create([
                 'user_id' => auth()->user()->id,
                 'recipe_id' => $recipe->id,

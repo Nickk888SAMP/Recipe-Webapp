@@ -40,6 +40,22 @@ class Recipe extends Model
         return $hours >= 1 ? $hours . " Stunde(n) " . $minutes . " Minute(n)" : $minutes . " Minute(n)";
     }
 
+    public function difficulty()
+    {
+        return $this->numToDifficulty($this->difficulty);
+    }
+
+    public static function numToDifficulty($num)
+    {
+        switch($num)
+        {
+            case 0: return "Einfach";
+            case 1: return "Mittel";
+            case 2: return "Anspruchsvoll";
+        }
+        return "Fehler";
+    }
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
