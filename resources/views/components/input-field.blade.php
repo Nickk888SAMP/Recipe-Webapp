@@ -6,4 +6,8 @@
         type="{{ $type }}"
         value="{{ $value }}"
         >
+
+        @error($name) 
+            <span class="error">{{ $message }}</span> 
+        @enderror
 </div>

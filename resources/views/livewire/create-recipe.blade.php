@@ -3,13 +3,13 @@
         @csrf
         <div>
             {{-- Title --}}
-            <x-inputfieldlabel for="name" text="Name"/>
-            <x-inputfield wire:model="form.name" class="w-full rounded-md" name="name"/>
+            <x-inputfieldlabel for="form.name" text="Name"/>
+            <x-inputfield wire:model.blur="form.name" class="w-full rounded-md" name="form.name"/>
         </div>
         <div class="mt-4">
             {{-- Description --}}
-            <x-inputfieldlabel for="description" text="Beschreibung"/>
-            <x-textfield class="w-full rounded-md" wire:model="form.description" name="description"/>
+            <x-inputfieldlabel for="form.description" text="Beschreibung"/>
+            <x-textfield class="w-full rounded-md" wire:model.blur="form.description" name="form.description"/>
         </div>
         <div class="mt-4">
 
@@ -27,19 +27,19 @@
                     {{-- Prep Time Hours and Minutes --}}
                     <div>
                         {{-- Hours --}}
-                        <x-inputfieldlabel for="preptime_hours" text="Stunden"/>
-                        <x-inputfield wire:model="form.prepTimeHours" name="preptime_hours" class="w-16 rounded-md" type="number" min="0" max="999" value="0"/>
+                        <x-inputfieldlabel for="form.prepTimeHours" text="Stunden"/>
+                        <x-inputfield wire:model.blur="form.prepTimeHours" name="form.prepTimeHours" class="w-16 rounded-md" type="number" min="0" max="999" value="0"/>
                     </div>
                     <div>
                         {{-- Minutes --}}
-                        <x-inputfieldlabel for="preptime_minutes" text="Minuten"/>
-                        <x-inputfield wire:model="form.prepTimeMinutes" name="preptime_minutes" class="w-16 rounded-md" type="number" min="0" max="60" value="0"/>
+                        <x-inputfieldlabel for="form.prepTimeMinutes" text="Minuten"/>
+                        <x-inputfield wire:model.blur="form.prepTimeMinutes" name="form.prepTimeMinutes" class="w-16 rounded-md" type="number" min="0" max="60" value="0"/>
                     </div>
                 </div>
 
                 <div class="mt-8">
                     {{-- Difficulty --}}
-                    <select class="rounded-lg bg-white outline outline-2 outline-primary p-2 w-full h-10" wire:model="form.prepDifficulty" name="difficulty">
+                    <select class="rounded-lg bg-white outline outline-2 outline-primary p-2 w-full h-10" wire:model.blur="form.prepDifficulty" name="form.prepDifficulty">
                         @for ($i = 0; $i <= 2; $i++)
                             <option value="{{ $i }}">{{ App\Models\Recipe::numToDifficulty($i) }}</option> 
                         @endfor
@@ -83,12 +83,12 @@
                 <div>
                     {{-- Servings --}}
                     <x-inputfieldlabel for="servings" text="Für wie viele personen ist dieses rezept?"/>
-                    <x-inputfield class="w-16 rounded-lg" wire:model="form.servings" type="number" min="1" max="999" value="4"/>
+                    <x-inputfield class="w-16 rounded-lg" wire:model.blur="form.servings" type="number" min="1" max="999" value="4"/>
                 </div>
                 <div>
                     {{-- KCalories --}}
                     <x-inputfieldlabel for="kcalories" text="Wie viele Kilokalorien pro Portion?"/>
-                    <x-inputfield class="w-24 rounded-lg" wire:model="form.kcalories" type="number" min="1" max="99999" value="0"/>
+                    <x-inputfield class="w-24 rounded-lg" wire:model.blur="form.kcalories" type="number" min="0" max="99999" value="0"/>
                 </div>
             </div>
             {{-- Ingredients --}}

@@ -27,3 +27,6 @@
         </div>
     </div>
 </div>
+@error($wiremodel) 
+    <span class="error">{{ $message }}</span> 
+@enderror

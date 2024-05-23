@@ -10,13 +10,12 @@
         {{-- Meta --}}
         <meta charset="UTF-8">
         <title>Das Kochbuch - 350.000 Rezepte zum Nachkochen.</title>
-
-        {{-- Scripts --}}
-        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        
+        {{-- Java Scripts --}}
+        @vite('resources/js/app.js')
 
         {{-- Style --}}
         @vite('resources/css/app.css')
-        @vite('resources/js/app.js')
         @livewireStyles
         
 
@@ -34,8 +33,6 @@
 
         {{-- Scripts --}}
         @include('layouts.scripts')
-        @livewire('livewire-ui-modal')
-        @livewireScripts
     </body>
 
     <footer>

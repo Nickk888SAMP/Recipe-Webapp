@@ -2,7 +2,6 @@
 
 namespace App\Livewire;
 
-use App\Livewire\Request;
 use Livewire\Component;
 use App\Livewire\Forms\CreateRecipeForm;
 use App\Models\Recipe;
@@ -13,7 +12,7 @@ use App\Models\PreparingStep;
 
 use App\Traits\HelpersTrait;
 use Livewire\WithFileUploads;
-use ImageOptimizer;
+use Spatie\LaravelImageOptimizer\Facades\ImageOptimizer;
 
 class CreateRecipe extends Component
 {
@@ -83,10 +82,15 @@ class CreateRecipe extends Component
         $this->form->prepSteps = $newArray;
     }
 
+    public function updated($propertyName)
+    {
+        $this->validateOnly($propertyName);
+    }
+
     public function save()
     {
-        // dd($request);
-
+        $this->validate();
+        
         //Recipe
         $recipe = Recipe::create([
             'name' => $this->form->name,
@@ -97,7 +101,7 @@ class CreateRecipe extends Component
             'kcalories' => $this->form->kcalories,
             'user_id' => auth()->user()->id
         ]);
-
+        
         // Ingredients
         foreach($this->form->ingredients as $index => $ingredient)
         {
@@ -110,7 +114,7 @@ class CreateRecipe extends Component
                 'order' => $index
             ]);
         }
-
+        
         // Prep Steps
         foreach($this->form->prepSteps as $index => $prepStep)
         {
@@ -120,7 +124,7 @@ class CreateRecipe extends Component
                 'preparing_text' => $prepStep
             ]);
         }
-
+        
         // Images
         foreach($this->form->images as $image)
         {
@@ -134,8 +138,9 @@ class CreateRecipe extends Component
                 'image_path' => $path
             ]);
         }
+        dd("OK");
     }
-
+    
     public function render()
     {
         return view('livewire.create-recipe', [
