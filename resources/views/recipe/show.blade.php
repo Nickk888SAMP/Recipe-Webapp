@@ -62,6 +62,9 @@
 
 </section>
 
+<!-- Outside of any Livewire component -->
+<button onclick="Livewire.dispatch('openModal', { component: 'edit-user' })">Edit User</button>
+
 {{-- Ingredients --}}
 <x-section>
 
@@ -79,9 +82,14 @@
 {{-- Reviews --}}
 <x-section>
 
+    <div class="flex justify-between">
     {{-- Label --}}
     <x-sectionlabel>Bewertungen</x-sectionlabel>
+    
+    {{-- Add Recipe Button --}}
+    <x-button class="rounded-full">Rezept Bewerten</x-button>
 
+    </div>
     {{-- Reviews --}}
     <div class="flex flex-col gap-4 mt-4">
 
