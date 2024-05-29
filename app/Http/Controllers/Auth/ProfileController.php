@@ -4,18 +4,18 @@ namespace App\Http\Controllers\auth;
 
 use App\Http\Controllers\Controller;
 use App\Traits\HelpersTrait;
+use App\Traits\UploadTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use File;
-use Spatie\LaravelImageOptimizer\Facades\ImageOptimizer;
-use Spatie\ImageOptimizer\OptimizerChainFactory;
+
 
 
 
 class ProfileController extends Controller
 {
-    use HelpersTrait;
+    use HelpersTrait, UploadTrait;
 
     public function edit(Request $request)
     {
@@ -32,17 +32,11 @@ class ProfileController extends Controller
             'avatar' => ['image', 'max:2048', 'mimes:png,jpg,bmp']
         ]);
 
+        // Avatar Upload
         if($request->hasFile('avatar'))
         {
-            if(File::exists(public_path($user->avatar)))
-            {
-                File::delete(public_path($user->avatar));
-            }
-            $file = $request->file('avatar');
-            $imageName = $this->generateFilename() . "." . $file->extension();
-            $file->storeAs('uploads/avatars', $imageName);
-            $path = "storage/uploads/avatars/" . $imageName;
-            ImageOptimizer::optimize($path);
+            $this->removeFileIfExists($user->avatar);
+            $path = $this->uploadImage($request->file('avatar'), "uploads/avatars");
             $user->avatar = $path;
         }
 

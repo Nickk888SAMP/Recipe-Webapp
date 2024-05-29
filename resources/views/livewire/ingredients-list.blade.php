@@ -36,8 +36,12 @@
 
     <div class="grid grid-cols-5 gap-8 mt-2">
         <div class="flex justify-end gap-1 col-span-1 md:col-span-1">
-            <p class="text-slate-700">{{ round($ingredient->amount * $servings)  }}</p>
-            <p class="text-primary font-semibold ">{{ $ingredient->unit->short }}</p>
+            @if($ingredient->amount > 0)
+                <p class="text-slate-700">{{ round($ingredient->amount * $servings)  }}</p>
+            @endif
+            @if($ingredient->unit !== null)
+                <p class="text-primary font-semibold ">{{ $ingredient->unit->short }}</p>
+            @endif
         </div>
         <div class="col-span-4 md:col-span-4">
             <p class="text-slate-700">{{ $ingredient->ingredient }}</p>

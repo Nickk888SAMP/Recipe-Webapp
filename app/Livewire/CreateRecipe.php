@@ -11,19 +11,20 @@ use App\Models\RecipeImage;
 use App\Models\PreparingStep;
 
 use App\Traits\HelpersTrait;
+use App\Traits\UploadTrait;
 use Livewire\WithFileUploads;
 use Spatie\LaravelImageOptimizer\Facades\ImageOptimizer;
 
 class CreateRecipe extends Component
 {
-    use WithFileUploads, HelpersTrait;
+    use WithFileUploads, HelpersTrait, UploadTrait;
 
     public CreateRecipeForm $form;
     
 
     public function mount()
     {
-        $this->form->ingredients = array(['amount' => 0, 'unit' => 1, 'ingredient' => '']);
+        $this->form->ingredients = array(['amount' => '0', 'unit' => '0', 'ingredient' => '']);
         $this->form->prepSteps = array(null);
     }
     
@@ -49,7 +50,7 @@ class CreateRecipe extends Component
 
     public function addIngredient()
     {
-        $newIngredient = ['amount' => 0, 'unit' => 0, 'ingredient' => ''];
+        $newIngredient = ['amount' => '0', 'unit' => '0', 'ingredient' => ''];
         array_push($this->form->ingredients, $newIngredient);
     }
 
@@ -105,11 +106,12 @@ class CreateRecipe extends Component
         // Ingredients
         foreach($this->form->ingredients as $index => $ingredient)
         {
-            $unit = IngredientUnit::findOrFail($ingredient['unit']);
+            $unit = IngredientUnit::find($ingredient['unit']);
+
             Ingredient::create([
                 'recipe_id' => $recipe->id,
                 'amount' => ($ingredient['amount'] / $this->form->servings),
-                'ingredient_unit_id' => $unit->id,
+                'ingredient_unit_id' => $unit?->id,
                 'ingredient' => $ingredient['ingredient'],
                 'order' => $index
             ]);
@@ -128,17 +130,14 @@ class CreateRecipe extends Component
         // Images
         foreach($this->form->images as $image)
         {
-            $imageName = $this->generateFilename() . "." . $image->extension();
-            $image->storeAs('uploads/recipees', $imageName);
-            $path = "storage/uploads/recipees/" . $imageName;
-            ImageOptimizer::optimize($path);
+            $path = $this->uploadImage($image, "uploads/recipees");
             RecipeImage::create([
                 'user_id' => auth()->user()->id,
                 'recipe_id' => $recipe->id,
                 'image_path' => $path
             ]);
         }
-        dd("OK");
+        return redirect()->route('dashboard.recipees');
     }
     
     public function render()

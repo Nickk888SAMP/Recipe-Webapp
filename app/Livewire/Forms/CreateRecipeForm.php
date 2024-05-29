@@ -7,6 +7,7 @@ use Livewire\Form;
 
 class CreateRecipeForm extends Form
 {
+
     #[Validate('required|min:3|max:64')] 
     public $name;
     #[Validate('max:255')] 
@@ -24,6 +25,8 @@ class CreateRecipeForm extends Form
     #[Validate('required|numeric|min:0|max:9999')] 
     public $kcalories = 0;
     public $preparing;
+    #[Validate('required|array|min:2')]
     public $ingredients;
+    #[Validate('required|array|min:2')]
     public $prepSteps;
 }

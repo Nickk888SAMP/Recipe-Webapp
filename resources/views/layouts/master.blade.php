@@ -18,6 +18,7 @@
         @vite('resources/css/app.css')
         @livewireStyles
         
+        
 
     </head>
     
@@ -30,9 +31,10 @@
         <div class="p-5 mx-auto md:w-[90%] lg:w-[80%] xl:w-[70%] max-w-6xl">
             @yield('content')
         </div>
-
+        
         {{-- Scripts --}}
         @include('layouts.scripts')
+        @livewire('wire-elements-modal')
     </body>
 
     <footer>

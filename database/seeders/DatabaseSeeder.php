@@ -22,6 +22,8 @@ class DatabaseSeeder extends Seeder
         ['El', 'Esslöffel'],
         ['g', 'Gramm'],
         ['st.', 'Stück'],
+        ['Pck.', 'Packungen'],
+        ['n. B.', 'nach Bedarf'],
     );
     /**
      * Seed the application's database.

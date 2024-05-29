@@ -4,7 +4,7 @@
         <div>
             {{-- Title --}}
             <x-inputfieldlabel for="form.name" text="Name"/>
-            <x-inputfield wire:model.blur="form.name" class="w-full rounded-md" name="form.name"/>
+            <x-inputfield wire:loading.attr="disabled" wire:model.blur="form.name" class="w-full rounded-md" name="form.name"/>
         </div>
         <div class="mt-4">
             {{-- Description --}}
@@ -112,7 +112,7 @@
                     
                     {{-- Single Sortable Item --}}
                     <li wire:sortable.item="{{$index}}" wire:key="{{ $index }}" class="flex justify-between items-center">
-                        
+
                         {{-- Handle Component --}}
                         <div wire:sortable.handle class="outline outline-2 p-2 outline-primary bg-primary text-white rounded-l-md hover:cursor-all-scroll">
                             <svg class="w-6"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round">  <polyline points="5 9 2 12 5 15" />  <polyline points="9 5 12 2 15 5" />  <polyline points="15 19 12 22 9 19" />  <polyline points="19 9 22 12 19 15" />  <line x1="2" y1="12" x2="22" y2="12" />  <line x1="12" y1="2" x2="12" y2="22" /></svg>
@@ -122,11 +122,15 @@
                         <x-inputfield wire:model="form.ingredients.{{$index}}.amount" class="w-full h-10" type="number"/>
                         
                         {{-- Ingredient Unit --}}
-                        <select wire:model="form.ingredients.{{$index}}.unit" class="outline outline-2 outline-primary p-2 h-10 bg-white" name="difficulty">
+                        <select wire:model="form.ingredients.{{$index}}.unit" class="outline outline-2 outline-primary p-2 h-10 bg-white" name="form.ingredients.{{$index}}.unit">
+                            
+                            <option value="0">Keine Einheit</option>
                             @foreach ($ingredientUnits as $ingredientUnit)
                                 <option value="{{ $ingredientUnit->id }}">{{ $ingredientUnit->long }} : {{ $ingredientUnit->short }}</option>
                             @endforeach
+
                         </select>
+                        
 
                         {{-- Ingredient Name --}}
                         <div class="w-full">
@@ -180,9 +184,10 @@
 
                         {{-- Prep Step Name --}}
                         <div class="w-full">
-                            <x-inputfield wire:model="form.prepSteps.{{$index}}" placeholder="Zubereitungsschritt eingeben. Zb. Gemüse schneiden oder Backofen auf 180°C aufwärmen." class="w-full h-10"/>
+                            <x-inputfield name="form.prepSteps.{{$index}}" wire:model.live="form.prepSteps.{{$index}}" placeholder="Zubereitungsschritt eingeben. Zb. Gemüse schneiden oder Backofen auf 180°C aufwärmen." class="w-full h-10"/>
+                            @error('form.prepSteps.{{$index}}') <p>Error</p> @enderror
                         </div>
-
+                        
                         {{-- Prep Step Delete --}}
                         <x-button class="ml-0.5 outline outline-2 outline-primary rounded-r-md hover:outline-tritary" type="button" wire:click="removePrepStep({{ $index }})">
                             <svg class="w-6" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">  <path stroke="none" d="M0 0h24v24H0z"/>  <line x1="4" y1="7" x2="20" y2="7" />  <line x1="10" y1="11" x2="10" y2="17" />  <line x1="14" y1="11" x2="14" y2="17" />  <path d="M5 7l1 12a2 2 0 0 0 2 2h8a2 2 0 0 0 2 -2l1 -12" />  <path d="M9 7v-3a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v3" /></svg>
@@ -197,5 +202,7 @@
         <div class="mt-4">
             <x-button type="submit" class="w-full rounded-full">Rezept Erstellen</x-button>
         </div>
+        <div wire:loading>Loading...</div>
+
     </form>
 </div>
