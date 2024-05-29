@@ -65,7 +65,7 @@ class CreateRecipe extends Component
     public function updateIngredientsOrder($list)
     {
         $newArray = array();
-        foreach($list as $key => $value)
+        foreach($list as $value)
         {
             array_push($newArray, $this->form->ingredients[ $value['value'] ]);
         }
@@ -75,7 +75,7 @@ class CreateRecipe extends Component
     public function updatePrepStepsOrder($list)
     {
         $newArray = array();
-        foreach($list as $key => $value)
+        foreach($list as $value)
         {
             array_push($newArray, $this->form->prepSteps[ $value['value'] ]);
         }
@@ -125,6 +125,7 @@ class CreateRecipe extends Component
             ]);
         }
         
+
         // Images
         foreach($this->form->images as $image)
         {
@@ -147,4 +148,6 @@ class CreateRecipe extends Component
             'ingredientUnits' => IngredientUnit::all()
         ]);
     }
+
+    
 }
