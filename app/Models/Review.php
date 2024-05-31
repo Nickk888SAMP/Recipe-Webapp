@@ -10,6 +10,12 @@ use App\Models\User;
 class Review extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'recipe_id',
+        'rating',
+        'review',
+    ];
 
     public function user(): BelongsTo
     {

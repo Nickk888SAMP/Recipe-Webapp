@@ -39,7 +39,9 @@
             <div class="mt-2 px-8 flex flex-col items-center">
 
                 {{-- Rating --}}
-                <x-rating :recipe=$recipe/>
+
+                <livewire:reciperating :recipe="$recipe">
+                
 
                 {{-- Informations --}}
                 <div class="flex flex-wrap py-1 justify-center content-center gap-4 text-sm grid-sh">
@@ -64,7 +66,7 @@
 
 {{-- Ingredients --}}
 <x-section>
-    <button onclick="Livewire.dispatch('openModal', { component: 'edit-user' })">Edit User</button>
+
     <livewire:ingredientslist lazy :recipe="$recipe"/>
 
 </x-section>
@@ -80,25 +82,19 @@
 <x-section>
 
     <div class="flex justify-between">
-    {{-- Label --}}
-    <x-sectionlabel>Bewertungen</x-sectionlabel>
-    
-    {{-- Add Recipe Button --}}
-    <x-button class="rounded-full">Rezept Bewerten</x-button>
 
+        {{-- Label --}}
+        <x-sectionlabel>Bewertungen</x-sectionlabel>
+        
+        @if($user === null || $user->id !== $recipe->user->id)
+            {{-- Add Recipe Button --}}
+            <x-button onclick="Livewire.dispatch('openModal', { component: 'add-review-modal', arguments: { recipe: {{ $recipe }}, user: {{ $user }}  } })" class="rounded-full">Rezept bewerten</x-button>
+        @endif
     </div>
+
     {{-- Reviews --}}
-    <div class="flex flex-col gap-4 mt-4">
+    <livewire:recipereviews lazy :recipe="$recipe"/>
 
-        @forelse ($recipe->reviews as $review)
-            <x-review :review=$review/>
-        @empty
-            <x-noitemsinfo>
-                Noch keine Bewertungen für dieses Rezept vorhanden. <br>Sei der Erste und teile deine Meinung!
-            </x-noitemsinfo>
-        @endforelse
-
-    </div>
 </x-section>
 
 @endsection
