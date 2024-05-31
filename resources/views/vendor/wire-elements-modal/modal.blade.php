@@ -11,22 +11,22 @@
             x-on:close.stop="setShowPropertyTo(false)"
             x-on:keydown.escape.window="closeModalOnEscape()"
             x-show="show"
-            class="fixed inset-0 z-10 overflow-y-auto"
+            class="fixed inset-0 z-50 overflow-y-auto"
             style="display: none;"
     >
-        <div class="flex items-end justify-center min-h-screen px-4 pt-4 pb-10 text-center sm:block sm:p-0">
+        <div class="flex items-start justify-center min-h-screen text-center">
             <div
                     x-show="show"
                     x-on:click="closeModalOnClickAway()"
                     x-transition:enter="ease-out duration-300"
-                    x-transition:enter-start="opacity-0"
-                    x-transition:enter-end="opacity-100"
+                    x-transition:enter-start="opacity-0 backdrop-blur-none"
+                    x-transition:enter-end="opacity-100 backdrop-blur-sm"
                     x-transition:leave="ease-in duration-200"
-                    x-transition:leave-start="opacity-100"
-                    x-transition:leave-end="opacity-0"
-                    class="fixed inset-0 transition-all transform"
+                    x-transition:leave-start="opacity-100 backdrop-blur-sm"
+                    x-transition:leave-end="opacity-0 backdrop-blur-none"
+                    class="fixed inset-0 transition-all transform backdrop-blur-sm"
             >
-                <div class="absolute inset-0 bg-gray-500 opacity-75"></div>
+                <div class="absolute inset-0 bg-gray-500/30 backdrop-filter"></div>
             </div>
 
             <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>

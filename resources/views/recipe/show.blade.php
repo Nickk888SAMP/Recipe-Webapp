@@ -64,7 +64,7 @@
 
 {{-- Ingredients --}}
 <x-section>
-
+    <button onclick="Livewire.dispatch('openModal', { component: 'edit-user' })">Edit User</button>
     <livewire:ingredientslist lazy :recipe="$recipe"/>
 
 </x-section>
