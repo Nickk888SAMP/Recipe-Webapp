@@ -62,9 +62,6 @@
 
 </section>
 
-<!-- Outside of any Livewire component -->
-<button onclick="Livewire.dispatch('openModal', { component: 'edit-user' })">Edit User</button>
-
 {{-- Ingredients --}}
 <x-section>
 

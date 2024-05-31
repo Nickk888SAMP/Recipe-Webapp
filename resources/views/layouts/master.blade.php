@@ -17,9 +17,6 @@
         {{-- Style --}}
         @vite('resources/css/app.css')
         @livewireStyles
-        
-        
-
     </head>
     
     <body class="antialiased">
@@ -34,7 +31,7 @@
         
         {{-- Scripts --}}
         @include('layouts.scripts')
-        @livewire('wire-elements-modal')
+        
     </body>
 
     <footer>
