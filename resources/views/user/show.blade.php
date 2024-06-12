@@ -22,9 +22,9 @@
 
                 {{-- Description --}}
                 @if ($user->description)
-                    <div>
+                    <x-pf>
                         {{ $user->description }}
-                    </div>
+                    </x-pf>
                 @endif
                 
             </div>

@@ -31,7 +31,7 @@
         
         {{-- Scripts --}}
         @include('layouts.scripts')
-        @livewire('wire-elements-modal')
+        
     </body>
 
     <footer>

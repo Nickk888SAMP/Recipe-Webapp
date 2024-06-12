@@ -1,4 +1,3 @@
-
 // Swiper
 import Swiper from 'swiper';
 import { Autoplay, Navigation, Pagination } from 'swiper/modules';
@@ -76,3 +75,4 @@ const swiper2 = new Swiper('.swiper2', {
     },
 
 });
+

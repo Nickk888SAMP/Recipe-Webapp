@@ -11,14 +11,14 @@
                 <p class="ml-1">{{ $review->user->displayname }}</p>
                 <div class="flex justify-start gap-2">
                     <x-ratingstars :rating="$review->rating"/>
-                    <p class="text-xs text-slate-500">{{ $review->created_at->diffForHumans() }}</p>
+                    <p class="text-xs font-medium text-slate-500">{{ $review->created_at->diffForHumans() }}</p>
                 </div>
             </div>
         </div>
 
         {{-- Review Text --}}
         <div class="mt-4">
-            <p>{{ $review->review }}</p>
+            <x-pf>{{ $review->review }}</x-pf>
         </div>
     </div>
 </div>

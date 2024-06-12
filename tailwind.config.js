@@ -8,9 +8,7 @@ module.exports = {
   content: [
     "./resources/**/*.blade.php",
     "./resources/**/*.js",
-    "./resources/**/*.vue",
-    './vendor/masmerise/livewire-toaster/resources/views/*.blade.php',
-    './vendor/wire-elements/modal/**/*.blade.php'
+    "./resources/**/*.vue"
   ],
 
   // Safelist
