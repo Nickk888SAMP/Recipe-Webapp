@@ -19,7 +19,7 @@ use App\Http\Middleware\AdminAuth;
 Route::get('/', function () 
 {
     $recipes = Recipe::all();
-    return view('Home.index', [
+    return view('home.index', [
         'recipes' => $recipes
     ]);
 })->name('home.index');
