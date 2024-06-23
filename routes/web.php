@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Recipe;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
@@ -16,11 +17,12 @@ use App\Http\Middleware\AdminAuth;
 
 
 // Home
-Route::get('/', function () 
-{
-    $recipes = Recipe::all();
+Route::get('/', function () {
+    $recipesHighestRated = Recipe::highestRated()->limit(10)->get();
+    $categories = Category::all();
     return view('home.index', [
-        'recipes' => $recipes
+        'recipesHighestRated' => $recipesHighestRated,
+        'categories' => $categories,
     ]);
 })->name('home.index');
 

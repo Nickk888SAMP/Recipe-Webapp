@@ -60,10 +60,18 @@
     }
 }
 
-.swiper-pagination-bullet-active {
-    background-color: #df7700;
-    
-  }
+/* Swiper */
+.swiper-pagination {
+    --swiper-pagination-color: #df7700;
+}
+
+.swiper-button-next {
+    --swiper-navigation-color: #df7700;
+}
+
+.swiper-button-prev {
+    --swiper-navigation-color: #df7700;
+}
 
   
 

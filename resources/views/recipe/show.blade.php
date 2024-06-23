@@ -13,13 +13,30 @@
 
     {{-- Informations --}}
     <section id="recipe-informations" class="shadow-lg rounded-3xl grid md:grid-cols-3 gap-0">
-
         {{-- Image --}}
-        <div class="sm:row-span-2 md:col-span-2 h-[300px] overflow-hidden md:h-[400px] lg:h-[500px] flex rounded-md md:rounded-l-3xl md:rounded-b-3xl">
-            <img class="object-cover h-full w-full hover:scale-105 transition duration-500" src="{{ $recipe->imagesNormalized() }}" alt="">
-            <div class="absolute p-2">
+        {{-- <div class="rounded-t-md md:rounded-l-3xl overflow-hidden flex justify-center h-96">
+            <img class="object-cover w-full h-full hover:scale-110 transition duration-500" src="{{ asset('img/stockfood-'.$i.'.jpg') }}" alt="slide-image">
+        </div> --}}
+        <div class="sm:row-span-2 md:col-span-2 h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden flex rounded-md md:rounded-3xl">
+            <div class="absolute z-10 p-2">
                 <livewire:favorite-recipe-button lazy class="relative" :recipe="$recipe" :user="$user"/>
             </div>
+            <div class="swiper swiper3 h-full w-full">
+                
+                <div class="swiper-wrapper">
+                    
+                    @foreach ($recipe->imagesNormalized() as $image)
+                        <div class="swiper-slide">
+                            <img class="object-cover h-full w-full hover:scale-105 transition duration-500" src="{{ $image }}" alt="">
+                        </div>
+                    @endforeach
+                    
+                </div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
+            </div>
+
         </div>
 
         {{-- Informations --}}
@@ -94,7 +111,8 @@
             
             @if($user?->id !== $recipe->user->id)
                 {{-- Add Recipe Button --}}
-                <x-button onclick="Livewire.dispatch('openModal', { component: 'add-review-modal', arguments: { recipe: {{ $recipe }}, user: {{ $user }}  } })" class="rounded-full">Rezept bewerten</x-button>
+                <x-button onclick="Livewire.dispatch('openModal', { component: 'add-review-modal', arguments: { recipe: {{ $recipe }}, user: {{ $user }}  } })" 
+                    class="rounded-full">Rezept bewerten</x-button>
             @endif
             
         </div>

@@ -9,10 +9,10 @@
         {{-- Left Section --}}
         
         <div x-data="{ Hover: false }"  x-on:mouseover="Hover = true" x-on:mouseout="Hover = false"  class="overflow-hidden flex justify-center rounded-md md:rounded-l-3xl md:rounded-b-3xl">
-            <a class="relative" href="#">
+            <a class="relative w-full" href="#">
 
                 {{-- Mobile Overlay --}}
-                <div class="md:hidden ">
+                <div class="md:hidden">
 
                     {{-- Background --}}
                     <div :class="Hover ? 'opacity-80' : 'opacity-40'" class="absolute bg-black z-10 transition  h-full w-full"></div>
@@ -48,10 +48,10 @@
 
         {{-- Right Section --}}
         <div x-data="{ Hover: false }"  x-on:mouseover="Hover = true" x-on:mouseout="Hover = false"  class="overflow-hidden flex justify-center rounded-md md:rounded-l-3xl md:rounded-b-3xl">
-            <a class="relative" href="#">
+            <a class="relative w-full" href="#">
 
                 {{-- Mobile Overlay --}}
-                <div class="md:hidden ">
+                <div class="md:hidden">
 
                     {{-- Background --}}
                     <div :class="Hover ? 'opacity-80' : 'opacity-40'" class="absolute bg-black z-10 transition  h-full w-full"></div>

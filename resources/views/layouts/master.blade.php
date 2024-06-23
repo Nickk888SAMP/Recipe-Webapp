@@ -9,14 +9,15 @@
 
         {{-- Meta --}}
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
         <title>Das Kochbuch - 350.000 Rezepte zum Nachkochen.</title>
         
-        {{-- Java Scripts --}}
-        @vite('resources/js/app.js')
-
         {{-- Style --}}
         @vite('resources/css/app.css')
         @livewireStyles
+
+        {{-- Java Scripts --}}
+        @vite('resources/js/app.js')
     </head>
     
     <body class="antialiased">

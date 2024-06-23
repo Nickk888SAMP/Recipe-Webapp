@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Builder;
 use App\Models\Ingredient;
 use App\Models\RecipeImage;
 use App\Models\Review;
@@ -78,12 +79,17 @@ class Recipe extends Model
 
     public function imagesNormalized()
     {
-        $images = $this->images;
-        if(count($images))
+        $imagesList = array();
+        if(count($this->images))
         {
-            return asset($this->images->first()->image_path);
+            foreach($this->images as $image)
+            {
+                array_push($imagesList, asset($image->image_path));
+            }
+            return $imagesList;
         }
-        return asset('img/stockfood-2.jpg');
+        array_push($imagesList, asset('img/stockfood-2.jpg'));
+        return $imagesList;
     }
 
     public function reviews(): HasMany
@@ -94,6 +100,21 @@ class Recipe extends Model
     public function avgReviewRating()
     {
         return number_format($this->reviews()->avg('rating'), 1);
+    }
+
+    public function scopeName(Builder $query, string $name): Builder 
+    {
+        return $query->where('name', 'LIKE', '%' . $name . '%');
+    }
+
+    public function scopePopular(Builder $query): Builder 
+    {
+        return $query->withCount('reviews')->orderBy('reviews_count', 'desc');
+    }
+
+    public function scopeHighestRated(Builder $query): Builder 
+    {
+        return $query->withAvg('reviews', 'rating')->orderBy('reviews_avg_rating', 'desc');
     }
 
 

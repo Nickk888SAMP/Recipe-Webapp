@@ -21,6 +21,12 @@
                     {{-- <x-input-field-label text="Passwort" for="password"/> --}}
                     <x-input-field name="password" type="password" class="rounded-md w-full" placeholder="Passwort"/>
                 </div>
+
+                {{-- Password --}}
+                <div class="mb-4">
+                    {{-- <x-input-field-label text="Passwort" for="password"/> --}}
+                    <x-input-field name="password_confirmation" type="password" class="rounded-md w-full" placeholder="Passwort wiederholen"/>
+                </div>
                 
                 {{-- Display Name --}}
                 <div class="mb-4">

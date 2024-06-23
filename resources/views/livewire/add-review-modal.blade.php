@@ -37,10 +37,10 @@
             @endsection
                 
             @section('footer')
-                <x-button type="submit" class="rounded-md">Bewerten</x-button>
-                <div class="flex gap-4 w-full">
+            <div class="flex justify-between gap-4 w-full">
+                    <x-button type="submit" class="rounded-md">Bewerten</x-button>
                     <x-button class="rounded-md" wire:click="$dispatch('closeModal')">Schließen</x-button>
-                </div>
+            </div>
             @endsection
 
         </x-modal-template>

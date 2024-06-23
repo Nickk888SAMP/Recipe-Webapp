@@ -26,10 +26,15 @@
             <x-button class="w-full">Einloggen</x-button>
         </form>
 
+        {{-- Password Forgot --}}
+        <div class="mt-4 flex justify-end">
+            <a class="text-slate-500 text-sm text-center" href="#">Passwort vergessen?</a>
+        </div>
+
         {{-- Already an account --}}
-        <p class="mt-8 font-medium flex justify-center">Du hast noch kein Kochbuch-Konto?</p>
+        <p class="mt-8 font-medium flex justify-center text-center">Du hast noch kein Das Kochbuch-Konto?</p>
         <div class="mt-4 flex justify-center">
-            <a class="text-primary font-semibold" href="{{ route('auth.register.index') }}">Neues Konto erstellen</a>
+            <a class="text-primary font-semibold text-center" href="{{ route('auth.register.index') }}">Neues Konto erstellen</a>
         </div>
     </div>
 

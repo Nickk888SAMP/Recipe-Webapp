@@ -32,11 +32,11 @@
         </div>
 
         <!-- If we need pagination -->
-        <div class="swiper-pagination swiper-pagination1"></div>
+        <div class="swiper-pagination"></div>
     
         <!-- If we need navigation buttons -->
-        <div class="swiper-button-prev swiper-button-prev1 text-primary"></div>
-        <div class="swiper-button-next swiper-button-next1 text-primary"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
     </div>
     
 </section>

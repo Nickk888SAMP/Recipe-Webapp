@@ -26,8 +26,7 @@ class LoginController extends Controller
         {
             return redirect()->back();
         }
-
-        $this->error('Falsche anmeldedaten. Bitte versuchen Sie es erneut.');
+        flash()->addError('Falsche anmeldedaten. Bitte versuchen Sie es erneut.');
         return redirect()->back();
     }
 
@@ -37,7 +36,7 @@ class LoginController extends Controller
         session()->invalidate();
         session()->regenerateToken();
         session()->flush();
-
+        flash()->addSuccess('Du wurdest erfolgreich abgemeldet.');
         return redirect()->route('home.index');
     }
 }

@@ -1,11 +1,11 @@
 <section id="recipes" class="mt-8">
 
     {{-- Label --}}
-    <h2 class="text-3xl font-semibold">Best bewertete Rezepte</h2>
+    <h2 class="text-3xl font-semibold">Top 10 best bewertete Rezepte</h2>
 
     {{-- Slides --}}
     <div class="mt-4">
-        @if (count($recipes) == 0)
+        @if (count($recipesHighestRated) == 0)
         
         <x-noitemsinfo>
             Entschuldigung, aber es gibt noch keine Rezepte.<br>Bleib dran, bald werden welche verfügbar sein!
@@ -16,17 +16,17 @@
                 
                 <div class="swiper-wrapper">
                     
-                    @foreach ($recipes as $recipe)
+                    @foreach ($recipesHighestRated as $index=>$recipe)
                     <div class="swiper-slide">
                         
-                        <x-recipeCard :recipe=$recipe :user="$user"/>
+                        <x-recipeCard :recipe=$recipe :user="$user" :number="$index + 1"/>
                         
                     </div>
                     @endforeach
                     
                 </div>
-                <div class="swiper-button-prev swiper-button-prev2 text-primary"></div>
-                <div class="swiper-button-next swiper-button-next2 text-primary"></div>
+                <div class="swiper-button-prev"></div>
+                <div class="swiper-button-next"></div>
             </div>
             
         @endif

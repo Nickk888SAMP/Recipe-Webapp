@@ -22,12 +22,11 @@ class RegisterController extends Controller
     public function register(RegisterRequest $request)
     {
         User::create([
-            'name' => $request->display_name,
             'password' => Hash::make($request->password),
-            'email' => $request->email
+            'email' => $request->email,
+            'displayname' => $request->display_name,
         ]);
-
-        toastr()->success('Benutzerkonto wurde erfolgreich erstellt.');
+        flash()->addSuccess('Benutzerkonto wurde erfolgreich erstellt.');
         return redirect()->route('home.index');
     }
 }

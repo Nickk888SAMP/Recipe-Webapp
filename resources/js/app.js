@@ -27,13 +27,13 @@ const swiper1 = new Swiper('.swiper1', {
 
     // If we need pagination
     pagination: {
-        el: '.swiper-pagination1',
+        el: '.swiper-pagination',
     },
 
     // Navigation arrows
     navigation: {
-        nextEl: '.swiper-button-next1',
-        prevEl: '.swiper-button-prev1',
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
     },
 
 });
@@ -50,7 +50,7 @@ const swiper2 = new Swiper('.swiper2', {
     // effect:'coverflow',
     // Optional parameters
     direction: 'horizontal',
-    loop: true,
+    loop: false,
 
     breakpoints: {
         // when window width is >= 320px
@@ -70,8 +70,35 @@ const swiper2 = new Swiper('.swiper2', {
 
     // Navigation arrows
     navigation: {
-        nextEl: '.swiper-button-next2',
-        prevEl: '.swiper-button-prev2',
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+    },
+
+});
+
+const swiper3 = new Swiper('.swiper3', {
+    modules: [Navigation, Pagination, Autoplay],
+    speed:1000,
+    spaceBetween:0,
+    autoplay:{
+        delay:2000,
+        pauseOnMouseEnter: true,
+    },
+    slidesPerView: "auto",
+    // effect:'coverflow',
+    // Optional parameters
+    direction: 'horizontal',
+    loop: true,
+
+    // If we need pagination
+    pagination: {
+        el: '.swiper-pagination',
+    },
+
+    // Navigation arrows
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
     },
 
 });

@@ -12,16 +12,19 @@ class RecipeCard extends Component
 {
     public Recipe $recipe;
     public ?User $user;
+    public int $number;
     /**
      * Create a new component instance.
      */
     public function __construct(
         Recipe $recipe,
         ?User $user,
+        int $number = 0
     )
     {
         $this->recipe = $recipe;
         $this->user = $user;
+        $this->number = $number;
     }
 
     public function placeholder(array $params = [])
