@@ -2,10 +2,12 @@
     <form wire:submit="submit">
         <x-modal-template>
 
+            {{-- Header --}}
             @section('header')
                 <p>Rezept bewerten</p>
             @endsection
 
+            {{-- Content --}}
             @section('content')
                 <div>
                     <label>Deine bewertung</label>
@@ -36,11 +38,12 @@
                 
             @endsection
                 
+            {{-- Footer --}}
             @section('footer')
-            <div class="flex justify-between gap-4 w-full">
-                    <x-button type="submit" class="rounded-md">Bewerten</x-button>
-                    <x-button class="rounded-md" wire:click="$dispatch('closeModal')">Schließen</x-button>
-            </div>
+                <div class="flex justify-between gap-4 w-full">
+                        <x-button type="submit" class="rounded-md">Bewerten</x-button>
+                        <x-button class="rounded-md" wire:click="$dispatch('closeModal')">Schließen</x-button>
+                </div>
             @endsection
 
         </x-modal-template>

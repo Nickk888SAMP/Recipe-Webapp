@@ -13,7 +13,7 @@ use App\Models\PreparingStep;
 use App\Traits\HelpersTrait;
 use App\Traits\UploadTrait;
 use Livewire\WithFileUploads;
-use Spatie\LaravelImageOptimizer\Facades\ImageOptimizer;
+use DB;
 
 class CreateRecipe extends Component
 {
@@ -91,53 +91,56 @@ class CreateRecipe extends Component
     public function save()
     {
         $this->validate();
-        
-        //Recipe
-        $recipe = Recipe::create([
-            'name' => $this->form->name,
-            'description' => $this->form->description,
-            'servings' => $this->form->servings,
-            'preptime' => ($this->form->prepTimeHours * 60) + ($this->form->prepTimeMinutes),
-            'difficulty' => $this->form->prepDifficulty,
-            'kcalories' => $this->form->kcalories,
-            'user_id' => auth()->user()->id
-        ]);
-        
-        // Ingredients
-        foreach($this->form->ingredients as $index => $ingredient)
-        {
-            $unit = IngredientUnit::find($ingredient['unit']);
 
-            Ingredient::create([
-                'recipe_id' => $recipe->id,
-                'amount' => ($ingredient['amount'] / $this->form->servings),
-                'ingredient_unit_id' => $unit?->id,
-                'ingredient' => $ingredient['ingredient'],
-                'order' => $index
+        DB::transaction(function () {
+            
+            //Recipe
+            $recipe = Recipe::create([
+                'name' => $this->form->name,
+                'description' => $this->form->description,
+                'servings' => $this->form->servings,
+                'preptime' => ($this->form->prepTimeHours * 60) + ($this->form->prepTimeMinutes),
+                'difficulty' => $this->form->prepDifficulty,
+                'kcalories' => $this->form->kcalories,
+                'user_id' => auth()->user()->id
             ]);
-        }
-        
-        // Prep Steps
-        foreach($this->form->prepSteps as $index => $prepStep)
-        {
-            PreparingStep::create([
-                'recipe_id' => $recipe->id,
-                'step_number' => $index,
-                'preparing_text' => $prepStep
-            ]);
-        }
-        
+            
+            // Ingredients
+            foreach($this->form->ingredients as $index => $ingredient)
+            {
+                $unit = IngredientUnit::find($ingredient['unit']);
 
-        // Images
-        foreach($this->form->images as $image)
-        {
-            $path = $this->uploadImage($image, "uploads/recipees");
-            RecipeImage::create([
-                'user_id' => auth()->user()->id,
-                'recipe_id' => $recipe->id,
-                'image_path' => $path
-            ]);
-        }
+                Ingredient::create([
+                    'recipe_id' => $recipe->id,
+                    'amount' => ($ingredient['amount'] / $this->form->servings),
+                    'ingredient_unit_id' => $unit?->id,
+                    'ingredient' => $ingredient['ingredient'],
+                    'order' => $index
+                ]);
+            }
+            
+            // Prep Steps
+            foreach($this->form->prepSteps as $index => $prepStep)
+            {
+                PreparingStep::create([
+                    'recipe_id' => $recipe->id,
+                    'step_number' => $index,
+                    'preparing_text' => $prepStep
+                ]);
+            }
+            
+
+            // Images
+            foreach($this->form->images as $image)
+            {
+                $path = $this->uploadImage($image, "uploads/recipees");
+                RecipeImage::create([
+                    'user_id' => auth()->user()->id,
+                    'recipe_id' => $recipe->id,
+                    'image_path' => $path
+                ]);
+            }
+        });
         return redirect()->route('dashboard.recipees');
     }
     

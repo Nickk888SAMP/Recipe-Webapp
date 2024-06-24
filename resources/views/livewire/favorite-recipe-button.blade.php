@@ -1,5 +1,5 @@
 <div>
-    <button class="bg-white outline outline-2 outline-primary rounded-full h-10 w-10 flex justify-center items-center" wire:click="toggle" wire:loading.attr="disabled" wire:loading.class="opacity-50">
+    <button class="bg-white outline outline-2 shadow-md outline-primary rounded-full h-10 w-10 flex justify-center items-center" wire:click="toggle" wire:loading.attr="disabled" wire:loading.class="opacity-50">
         
         <div class="p-2">
             <svg  @class([

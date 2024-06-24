@@ -39,7 +39,7 @@
                 <p class="text-slate-700">{{ round($ingredient->amount * $servings)  }}</p>
             @endif
             @if($ingredient->unit !== null)
-                <p class="text-primary font-semibold ">{{ $ingredient->unit->short }}</p>
+                <p class="text-primary font-semibold">{{ $ingredient->unit->short }}</p>
             @endif
         </div>
         <div class="col-span-4 md:col-span-4">

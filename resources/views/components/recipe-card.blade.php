@@ -1,22 +1,28 @@
 <div>
-    {{-- Favorite Button --}}
-    <div class="absolute z-10 p-2 left-0">
-        <livewire:favoriterecipebutton lazy class="relative" :recipe="$recipe" :user="$user"/>
-    </div>
 
-    {{-- Number --}}
-    @if($number != 0)
-        <div class="absolute z-10 p-2 right-0">
-            <div class="font-bold text-primary outline outline-2 outline-primary rounded-full bg-white flex items-center justify-center font-mono h-10 w-10">
-                {{ $number }}
+    {{-- Favorite Button --}}
+    <div class="w-full relative">
+        <div class="absolute inset-0 flex justify-between">
+            <div class=" z-10 p-2">
+                <livewire:favoriterecipebutton lazy class="" :recipe="$recipe" :user="$user"/>
             </div>
+
+            {{-- Number --}}
+            @if($number != 0)
+                <div class=" z-10 p-2">
+                    <div class="font-bold text-primary outline outline-2 shadow-md outline-primary rounded-full bg-white flex items-center justify-center font-mono h-6 w-6">
+                        {{ $number }}
+                    </div>
+                </div>
+            @endif
         </div>
-    @endif
+    </div>
 
     {{-- Main --}}
     <div x-data="{ hover: false }" x-on:mouseover="hover = true" x-on:mouseout="hover = false">                    
         <a href="{{ route('recipe.show', $recipe) }}">
             <div class="bg-slate-50 rounded-t-3xl rounded-b-md">
+
                 
                 {{-- Image --}}
                 <div class="h-40 rounded-md md:rounded-t-3xl overflow-hidden flex items-center max-w-96 md:h-60">

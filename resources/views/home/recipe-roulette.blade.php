@@ -19,7 +19,7 @@
                     
                     {{-- Text --}}
                     <div class="absolute h-full w-full flex items-center z-10 justify-center p-4 ">
-                        <p :class="Hover ? 'text-primary' : 'text-slate-100'" class="font-bold text-3xl transition">Was koche ich heute?</p>
+                        <p :class="Hover ? 'text-primary' : 'text-slate-100'" class="font-bold text-3xl transition text-center">Was koche ich heute?</p>
                     </div>
                 </div>
 
@@ -58,7 +58,7 @@
                     
                     {{-- Text --}}
                     <div class="absolute h-full w-full flex items-center z-10 justify-center p-4 ">
-                        <p :class="Hover ? 'text-primary' : 'text-slate-100'" class="font-bold text-3xl transition">Was backe ich heute?</p>
+                        <p :class="Hover ? 'text-primary' : 'text-slate-100'" class="font-bold text-3xl transition text-center">Was backe ich heute?</p>
                     </div>
                 </div>
 

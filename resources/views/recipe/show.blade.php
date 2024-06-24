@@ -13,10 +13,8 @@
 
     {{-- Informations --}}
     <section id="recipe-informations" class="shadow-lg rounded-3xl grid md:grid-cols-3 gap-0">
+
         {{-- Image --}}
-        {{-- <div class="rounded-t-md md:rounded-l-3xl overflow-hidden flex justify-center h-96">
-            <img class="object-cover w-full h-full hover:scale-110 transition duration-500" src="{{ asset('img/stockfood-'.$i.'.jpg') }}" alt="slide-image">
-        </div> --}}
         <div class="sm:row-span-2 md:col-span-2 h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden flex rounded-md md:rounded-3xl">
             <div class="absolute z-10 p-2">
                 <livewire:favorite-recipe-button lazy class="relative" :recipe="$recipe" :user="$user"/>
@@ -36,7 +34,6 @@
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
             </div>
-
         </div>
 
         {{-- Informations --}}
@@ -71,7 +68,9 @@
                         {{-- Prep Time --}}
                         <x-preptime :recipe=$recipe/>
                         <x-prepdifficulty :recipe=$recipe/>
-                        <x-kcalories :recipe=$recipe/>
+                        @if ($recipe->kcalories > 0)
+                            <x-kcalories :recipe=$recipe/>
+                        @endif
                         <x-createdate :recipe=$recipe/>
 
                     </div>
@@ -104,7 +103,7 @@
     {{-- Reviews --}}
     <x-section>
 
-        <div class="flex justify-between">
+        <div class="flex flex-col md:flex-row justify-between gap-2">
 
             {{-- Label --}}
             <x-sectionlabel>Bewertungen</x-sectionlabel>
