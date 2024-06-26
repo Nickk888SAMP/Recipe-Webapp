@@ -2,6 +2,8 @@
 
 use App\Models\Recipe;
 use App\Models\Category;
+use App\Models\Tag;
+use App\Models\TagCategory;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\Auth\LoginController;
@@ -40,10 +42,36 @@ Route::resource("recipe", RecipeController::class)->only('show');
 
 // Search Recipe
 Route::get("/search", function (Request $request) {
-    $query = $request->input('query');
-    $filter = $request->input('filter', '');
-
-    return view('recipe.search', ['query' => $query]);
+    $tagCategories = TagCategory::all();
+    $tags = $request->input('tags');
+    $recipes = Recipe::all();
+    if($tags != null)
+    {
+        $tags = str_replace('+', ' ', $tags);
+        $tags = explode('%', $tags);
+        $tags = Tag::where(function ($query) use($tags)  {
+            foreach($tags as $item)
+            {
+                $query->orWhere('name', 'LIKE', $item . '%');
+            }
+        })->get();
+        $tagIds = $tags->pluck('id')->unique()->toArray();
+        $requiredTagCount = count($tagIds);
+        $recipes = Recipe::whereHas('tags', function ($query) use ($tagIds, $requiredTagCount) {
+            $query->whereIn('tag_id', $tagIds)
+                ->groupBy('recipe_id')
+                ->havingRaw('COUNT(DISTINCT tag_id) = ?', [$requiredTagCount]);
+        })->get();
+    } 
+    else 
+    {
+        $tags = array();
+    }
+    return view('recipe.search', [
+        'tags' => $tags, 
+        'recipes' => $recipes,
+        'tag_categories' => $tagCategories
+    ]);
 })->name('recipe.search');
 
 // Show User

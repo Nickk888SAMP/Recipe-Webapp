@@ -2,6 +2,23 @@
 
 @section('content')
     <x-section>
-        <p>{{ $query }}</p>
+
+        <div class="flex flex-wrap gap-3">
+            <x-filterbutton name='Sortieren' icon='eos-sort'/>
+            <x-filterbutton name='Bewertung' icon='heroicon-o-star'/>
+            <x-filterbutton name='Arbeitszeit' icon='heroicon-o-clock'/>
+            @foreach ($tag_categories as $tagCategory)
+                <x-filterbutton :name='$tagCategory->name' :icon='$tagCategory->icon'/>
+            @endforeach
+        </div>
+
+        <div class="my-4">
+            <div class="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4  gap-4">
+                @foreach ($recipes as $recipe)
+                    <x-recipeCard :recipe=$recipe/>
+                @endforeach
+            </div>
+        </div>
+            
     </x-section>
 @endsection

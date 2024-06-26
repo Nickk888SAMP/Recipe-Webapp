@@ -93,7 +93,7 @@
                         <input 
                             type="submit" 
                             class="text-slate-700 outline outline-1 cursor-pointer outline-primary hover:bg-primary hover:outline-none hover:text-white text-xs font-medium rounded-full m-1 py-1.5 px-2 transition-colors" 
-                            name="query"
+                            name="tags"
                             value="{{ $tag->name }}"
                             />
                     @endforeach
