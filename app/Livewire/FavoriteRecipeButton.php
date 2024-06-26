@@ -35,7 +35,7 @@ class FavoriteRecipeButton extends Component
         if (!Auth()->check())
             return redirect()->route('auth.login.index');
 
-        if ($this->user == null)
+        if ($this->user->id == null)
             return;
 
         if(!$this->userfavorite)

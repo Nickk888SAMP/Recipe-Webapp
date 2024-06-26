@@ -1,12 +1,11 @@
 <div>
 
     {{-- Favorite Button --}}
+    <div class="absolute z-10 p-2">
+        <livewire:favorite-recipe-button lazy :recipe="$recipe" :user="auth()->user()"/>
+    </div>
     <div class="w-full relative">
-        <div class="absolute inset-0 flex justify-between">
-            <div class=" z-10 p-2">
-                <livewire:favoriterecipebutton lazy class="" :recipe="$recipe" :user="$user"/>
-            </div>
-
+        <div class="absolute inset-0 flex justify-end">
             {{-- Number --}}
             @if($number != 0)
                 <div class=" z-10 p-2">

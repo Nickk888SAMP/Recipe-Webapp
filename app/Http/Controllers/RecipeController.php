@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Recipe;
+use App\Models\Tag;
 
 class RecipeController extends Controller
 {
@@ -36,8 +37,10 @@ class RecipeController extends Controller
      */
     public function show(Recipe $recipe)
     {
-        return view('recipe.show', ['recipe' => $recipe]);
+        return view('recipe.show', ['recipe' => $recipe, 'tags' => Tag::all()]);
     }
+
+    
 
     /**
      * Show the form for editing the specified resource.

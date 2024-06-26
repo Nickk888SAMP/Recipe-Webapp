@@ -13,7 +13,7 @@ use App\Http\Controllers\UserReviewController;
 use App\Http\Controllers\UserMessageController;
 use App\Http\Controllers\UserFavoriteController;
 use App\Http\Controllers\AdminController;
-use App\Http\Middleware\AdminAuth;
+use Illuminate\Http\Request;
 
 
 // Home
@@ -37,6 +37,14 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('auth.logout');
 
 // Show Recipe
 Route::resource("recipe", RecipeController::class)->only('show');
+
+// Search Recipe
+Route::get("/search", function (Request $request) {
+    $query = $request->input('query');
+    $filter = $request->input('filter', '');
+
+    return view('recipe.search', ['query' => $query]);
+})->name('recipe.search');
 
 // Show User
 Route::resource("user", UserController::class)->only('show');

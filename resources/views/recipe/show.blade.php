@@ -17,7 +17,7 @@
         {{-- Image --}}
         <div class="sm:row-span-2 md:col-span-2 h-[300px] md:h-[400px] lg:h-[500px] overflow-hidden flex rounded-md md:rounded-3xl">
             <div class="absolute z-10 p-2">
-                <livewire:favorite-recipe-button lazy class="relative" :recipe="$recipe" :user="$user"/>
+                <livewire:favorite-recipe-button lazy :recipe="$recipe" :user="$user"/>
             </div>
             <div class="swiper swiper3 h-full w-full">
                 
@@ -85,6 +85,20 @@
         </div>
 
     </section>
+
+    <x-section>
+        <div class="flex flex-wrap">
+            <form method="GET" action="{{ route('recipe.search') }}">
+                @foreach ($tags as $tag)
+                    <input 
+                        type="submit" 
+                        class="text-slate-700 outline outline-1 outline-primary hover:bg-primary hover:outline-none hover:text-white text-xs font-medium rounded-full m-1 py-1.5 px-2 transition-colors" 
+                        name="query"
+                        value="{{ $tag->name }}"/>
+                @endforeach
+            </form>
+        </div>
+    </x-section>
 
     {{-- Ingredients --}}
     <x-section>
