@@ -37,7 +37,11 @@ class RecipeController extends Controller
      */
     public function show(Recipe $recipe)
     {
-        return view('recipe.show', ['recipe' => $recipe, 'tags' => Tag::all()]);
+        return view('recipe.show', [
+            'recipe' => $recipe, 
+            'user' => auth()->user(), 
+            'tags' => $recipe->tags()->get()
+        ]);
     }
 
     

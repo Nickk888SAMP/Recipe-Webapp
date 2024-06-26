@@ -5,12 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Tag extends Model
+class RecipeTag extends Model
 {
     use HasFactory;
-
-    public function recipes()
-    {
-        return $this->belongsToMany(Recipe::class, RecipeTag::class);
-    }
 }

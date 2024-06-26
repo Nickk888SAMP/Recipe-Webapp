@@ -8,12 +8,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasManyThrough;
 use Illuminate\Database\Eloquent\Builder;
 use App\Models\Ingredient;
 use App\Models\RecipeImage;
 use App\Models\Review;
 use App\Models\User;
 use App\Models\PreparingStep;
+use App\Models\Tag;
 
 class Recipe extends Model
 {
@@ -75,6 +77,11 @@ class Recipe extends Model
     public function images(): HasMany
     {
         return $this->hasMany(RecipeImage::class);
+    }
+
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class, RecipeTag::class);
     }
 
     public function imagesNormalized()

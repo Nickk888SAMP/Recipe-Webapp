@@ -12,6 +12,8 @@ use App\Models\User;
 use App\Models\Recipe;
 use App\Models\Tag;
 use App\Models\TagCategory;
+use App\Models\Category;
+use App\Models\RecipeTag;
 
 class DatabaseSeeder extends Seeder
 {
@@ -80,6 +82,71 @@ class DatabaseSeeder extends Seeder
         ['Schnell', 3],
         ['Basisrezepte', 3],
         ['Preiswert', 3],
+
+        ['Kochen', 4],
+        ['Braten', 4],
+        ['Dünsten', 4],
+        ['Blanchieren', 4],
+        ['Schmoren', 4],
+        ['Backen', 4],
+        ['Überbacken', 4],
+        ['Wok', 4],
+        ['Mikrowelle', 4],
+        ['Römertopf', 4],
+        ['Fondue', 4],
+        ['Marinieren', 4],
+        ['Frittieren', 4],
+        ['Flambieren', 4],
+        ['Haltbarmachen', 4],
+        ['Wursten', 4],
+
+        ['Deutsch', 5],
+        ['Italienisch', 5],
+        ['Spanisch', 5],
+        ['Portugiesisch', 5],
+        ['Französisch', 5],
+        ['Englisch', 5],
+        ['Osteuropäisch', 5],
+        ['Skandinavisch', 5],
+        ['Griechisch', 5],
+        ['Türkisch', 5],
+        ['Russisch', 5],
+        ['Naher Osten', 5],
+        ['Asiatisch', 5],
+        ['Indisch', 5],
+        ['Japanisch', 5],
+        ['Amerikanisch', 5],
+        ['Mexikanisch', 5],
+        ['Karibisch', 5],
+        ['Lateinamerikanisch', 5],
+        ['Afrikanisch', 5],
+        ['Marokkanisch', 5],
+        ['Ägyptisch', 5],
+        ['Australisch', 5],
+
+        ['Hauptspeise', 6],
+        ['Vorspeise', 6],
+        ['Beilage', 6],
+        ['Dessert', 6],
+        ['Snack', 6],
+        ['Frühstück', 6],
+
+        ['Frühling', 7],
+        ['Sommer', 7],
+        ['Herbst', 7],
+        ['Winter', 7],
+        ['Für Kinder', 7],
+        ['Ostern', 7],
+        ['Halloween', 7],
+        ['Weihnachten', 7],
+        ['Silvester', 7],
+        ['Grillen', 7],
+        ['Camping', 7],
+        ['Party', 7],
+    );
+
+    public $categories = array(
+        'Pizza', 'Auflauf', 'Reis- oder Nudelsalat', 'Fingerfood', 'Suppe', 'Kuchen', 'Burger', 'Brot und Brötchen' 
     );
 
     /**
@@ -92,7 +159,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'kevinnickk888@gmail.com'
         ]);
         User::factory(25)->create();
-        Recipe::factory(100)->create();
+        $recipes = Recipe::factory(100)->create();
+        // $recipes = Recipe::all();
 
         // Ingredient units
         foreach($this->ingredientUnits as $ingredientUnit)
@@ -121,8 +189,16 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
+        // Categories
+        foreach($this->categories as $category)
+        {
+            Category::factory()->create([
+                'name' => $category,
+                'image_path' => asset('img/stockfood-2.jpg')
+            ]);
+        }
+
         // Ingredients
-        $recipes = Recipe::all();
         foreach($recipes as $recipe)
         {
             $rand = rand(3, 15);
@@ -142,13 +218,22 @@ class DatabaseSeeder extends Seeder
         // Preparing Steps
         foreach($recipes as $recipe)
         {
-            $rand = rand(3, 15);
-            for($i = 0; $i < $rand; $i++)
+            $randPrepSteps = rand(3, 15);
+            $randTags = rand(3, 15);
+            for($i = 0; $i < $randPrepSteps; $i++)
             {
                 PreparingStep::factory()->create([
                     'recipe_id' => $recipe,
                     'step_number' => $i,
                     'preparing_text' => fake()->sentence()
+                ]);
+            }
+            for($i = 0; $i < $randTags; $i++)
+            {
+                $tag = Tag::all()->random();
+                RecipeTag::factory()->create([
+                    'recipe_id' => $recipe,
+                    'tag_id' => $tag
                 ]);
             }
         }

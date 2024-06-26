@@ -1,9 +1,5 @@
 @extends('layouts.master')
 
-@php
-    $user = Auth::user();
-@endphp
-
 @section('content')
 
     {{-- Title --}}
@@ -86,18 +82,30 @@
 
     </section>
 
+    {{-- Tags --}}
     <x-section>
-        <div class="flex flex-wrap">
-            <form method="GET" action="{{ route('recipe.search') }}">
-                @foreach ($tags as $tag)
-                    <input 
-                        type="submit" 
-                        class="text-slate-700 outline outline-1 outline-primary hover:bg-primary hover:outline-none hover:text-white text-xs font-medium rounded-full m-1 py-1.5 px-2 transition-colors" 
-                        name="query"
-                        value="{{ $tag->name }}"/>
-                @endforeach
-            </form>
-        </div>
+
+        @if (!($tags->isEmpty()))
+            <div class="flex flex-wrap">
+                <form method="GET" action="{{ route('recipe.search') }}">
+
+                    @foreach ($tags as $tag)
+                        <input 
+                            type="submit" 
+                            class="text-slate-700 outline outline-1 cursor-pointer outline-primary hover:bg-primary hover:outline-none hover:text-white text-xs font-medium rounded-full m-1 py-1.5 px-2 transition-colors" 
+                            name="query"
+                            value="{{ $tag->name }}"
+                            />
+                    @endforeach
+
+                </form>
+            </div>
+        @else
+            <x-noitemsinfo >
+                Für dieses Rezept sind derzeit keine Tags vorhanden.
+            </x-noitemsinfo>
+        @endif
+        
     </x-section>
 
     {{-- Ingredients --}}
