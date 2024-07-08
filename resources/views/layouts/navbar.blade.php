@@ -39,9 +39,9 @@
                         <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
                     </svg> 
                 </div> 
-                    
-                    <input name="search-prompt" type="text" class="pl-10 w-full placeholder:font-semibold outline-none border-2 border-primary rounded-full p-2 hover:border-tritary focus:border-secondary" placeholder="z.B. Pfannkuchen, Lasagne, Low Carb">
-                    {{-- <button class="border-2 border-red-300 rounded-full p-2 ml-2">Suche</button> --}}
+                
+                <input name="search-prompt" type="text" class="pl-10 w-full placeholder:font-semibold outline-none border-2 border-primary  rounded-l-full p-2 hover:border-tritary focus:border-secondary" placeholder="z.B. Pfannkuchen, Lasagne, Suppen, Getränke, Schnell">
+                    <button class="border-2 border-primary rounded-r-full bg-primary text-white p-2">Suche</button>
             </div>
 
             {{-- Login Button --}}
@@ -95,14 +95,15 @@
 
         {{-- Categories --}}
         <div class="hidden md:flex justify-center items-center space-x-10 pt-4 font-medium text-lg text-slate-500">
-            <a class="hover:text-primary transition" href="#">Alle Rezepte</a>
-            <a class="hover:text-primary transition" href="#">Kochen</a>
-            <a class="hover:text-primary transition" href="#">Backen</a>
-            <a class="hover:text-primary transition" href="#">Schnell</a>
-            <a class="hover:text-primary transition" href="#">Neu</a>
-            <a class="hover:text-primary transition" href="#">Community</a>
-            <a class="hover:text-primary transition" href="#">Magazin</a>
+            {{-- <a class="hover:text-primary transition" href="#">Alle Rezepte</a> --}}
+            <a class="hover:text-primary transition" href="{{ route('recipe.search', ['tags' => 'Kochen']) }}">Kochen</a>
+            <a class="hover:text-primary transition" href="{{ route('recipe.search', ['tags' => 'Backen']) }}">Backen</a>
+            <a class="hover:text-primary transition" href="{{ route('recipe.search', ['tags' => 'Schnell']) }}">Schnell</a>
+            {{-- <a class="hover:text-primary transition" href="#">Neu</a> --}}
+            {{-- <a class="hover:text-primary transition" href="#">Community</a> --}}
+            {{-- <a class="hover:text-primary transition" href="#">Magazin</a> --}}
         </div>
+
         
         {{-- Mobile Categories --}}
         <div x-cloak x-show="mobileCategoriesOpen" 
@@ -147,13 +148,13 @@
 
                 {{-- Categories --}}
                 <div x-cloak x-show.transition="!profileMenu" class="flex flex-col divide-y" x-transiton >
-                    <a class="hover:text-primary transition p-4" href="#">Alle Rezepte</a>
-                    <a class="hover:text-primary transition p-4" href="#">Kochen</a>
-                    <a class="hover:text-primary transition p-4" href="#">Backen</a>
-                    <a class="hover:text-primary transition p-4" href="#">Schnell</a>
-                    <a class="hover:text-primary transition p-4" href="#">Neu</a>
-                    <a class="hover:text-primary transition p-4" href="#">Community</a>
-                    <a class="hover:text-primary transition p-4" href="#">Magazin</a>
+                    {{-- <a class="hover:text-primary transition p-4" href="#">Alle Rezepte</a> --}}
+                    <a class="hover:text-primary transition p-4" href="{{ route('recipe.search', ['tags' => 'Kochen']) }}">Kochen</a>
+                    <a class="hover:text-primary transition p-4" href="{{ route('recipe.search', ['tags' => 'Backen']) }}">Backen</a>
+                    <a class="hover:text-primary transition p-4" href="{{ route('recipe.search', ['tags' => 'Schnell']) }}">Schnell</a>
+                    {{-- <a class="hover:text-primary transition p-4" href="#">Neu</a> --}}
+                    {{-- <a class="hover:text-primary transition p-4" href="#">Community</a> --}}
+                    {{-- <a class="hover:text-primary transition p-4" href="#">Magazin</a> --}}
                 </div>
                 
             </div>

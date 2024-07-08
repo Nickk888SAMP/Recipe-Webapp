@@ -44,7 +44,7 @@ Route::resource("recipe", RecipeController::class)->only('show');
 Route::get("/search", function (Request $request) {
     $tagCategories = TagCategory::all();
     $tags = $request->input('tags');
-    $recipes = Recipe::all();
+    $recipes = Recipe::simplePaginate(5);
     if($tags != null)
     {
         $tags = str_replace('+', ' ', $tags);
@@ -61,7 +61,7 @@ Route::get("/search", function (Request $request) {
             $query->whereIn('tag_id', $tagIds)
                 ->groupBy('recipe_id')
                 ->havingRaw('COUNT(DISTINCT tag_id) = ?', [$requiredTagCount]);
-        })->get();
+        })->simplePaginate(5);
     } 
     else 
     {

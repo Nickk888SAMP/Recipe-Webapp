@@ -9,7 +9,7 @@
         {{-- Left Section --}}
         
         <div x-data="{ Hover: false }"  x-on:mouseover="Hover = true" x-on:mouseout="Hover = false"  class="overflow-hidden flex justify-center rounded-md md:rounded-l-3xl md:rounded-b-3xl">
-            <a class="relative w-full" href="#">
+            <a class="relative w-full" href="{{ route('recipe.search', ['tags' => 'Kochen']) }}">
 
                 {{-- Mobile Overlay --}}
                 <div class="md:hidden">
@@ -48,7 +48,7 @@
 
         {{-- Right Section --}}
         <div x-data="{ Hover: false }"  x-on:mouseover="Hover = true" x-on:mouseout="Hover = false"  class="overflow-hidden flex justify-center rounded-md md:rounded-l-3xl md:rounded-b-3xl">
-            <a class="relative w-full" href="#">
+            <a class="relative w-full" href="{{ route('recipe.search', ['tags' => 'Backen']) }}">
 
                 {{-- Mobile Overlay --}}
                 <div class="md:hidden">
